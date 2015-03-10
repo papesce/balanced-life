@@ -8,7 +8,6 @@ define([
     "dgrid/Grid",
     "dgrid/OnDemandGrid",
     "dgrid/Selection",
-//    "dgrid/selector",
     "dgrid/Keyboard",
     "dgrid/extensions/ColumnResizer", 
     "dstore/Cache",
@@ -20,7 +19,6 @@ define([
     "dgrid/extensions/DijitRegistry",
     "dijit/layout/ContentPane",
     "dojo/_base/array",
-//    "dojo/date/locale",
     "dojo/_base/lang",
     "dijit/registry",
     "dojo/text!./templates/taskGrid.html"
@@ -37,7 +35,7 @@ define([
 		Memory, 
 		Rest,
 		SimpleQuery,
-		editor,
+		Editor,
 		DijitRegistry, 
 		ContentPane, array,
 		//locale,
@@ -49,7 +47,6 @@ define([
 	return declare([_WidgetBase, _AttachMixin, _TemplatedMixin, _WidgetsInTemplateMixin
 	                ], {
         templateString: template,
-
         
         _grid : null,
         _gridSelection: {},
@@ -69,7 +66,7 @@ define([
         
         startup: function() {
         	  this.inherited(arguments);
-        	  this._grid.set('collection', this._store);
+        	  //this._grid.set('collection', this._store);
         	  this._grid.startup();
         	  this._addRowButton.startup();
         },
@@ -110,21 +107,17 @@ define([
    	   });
    	   //this._store = restStore;
    	   this._store = cachedStore;
-       	  this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer]))({
+   	   
+   	   var myColumns = [
+   	                  { label: "Name", field: "name", editor: "text" , autoSave: true,
+   	                	editOn : "dblclick", autoSelect : true } ];
+   	   
+       this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer, Editor]))({
        	    			collection: 	this._store,
        		   			selectionMode: "toggle",    
 //       		   			allowSelectAll: true,
-       		   			//getBeforePut: false,
-       		   			columns: [
-        	            	//planSelect: selector({label:"Select"}),
-       		   				editor({
-       		                label: "Name",
-       		                field: "taskName",
-       		                editor: "text",
-       		                editOn: "dblclick"
-       		   				}),
-       		   				//taskName : { field: 'name',  label: "Task Name"},
-        	            ],
+       		   			getBeforePut: false,
+       		   			columns: myColumns,
         	            //loadingMessage: "<span class='tt2pmpGridLoading'>Loading tasks...</span>",
         	            noDataMessage: "No tasks found."
         	            
