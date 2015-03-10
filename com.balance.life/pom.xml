@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.balance</groupId>
+	<artifactId>life</artifactId>
+	<name>com.balance.life</name>
+	<packaging>war</packaging>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<properties>
+		<org.springframework-version>4.0.8.RELEASE</org.springframework-version>
+	</properties>
+	<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.1.RELEASE</version>
+    </parent>
+	<dependencies>
+	 	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+    	<dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-mobile</artifactId>
+    	</dependency>
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-tomcat</artifactId>
+    		<scope>provided</scope>
+		</dependency>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+    	<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+        	<groupId>org.springframework.data</groupId>
+        	<artifactId>spring-data-jpa</artifactId>
+       	</dependency>
+	    
+       	<!--  DB2  -->
+       	<dependency>
+    		<groupId>com.ibm.db2.jcc</groupId>
+   			<artifactId>db2jcc4</artifactId>
+   			<version>3.8.48</version>
+		</dependency>
+	<dependency>
+    	<groupId>com.ibm.db2.jcc</groupId>
+    	<artifactId>db2jcc_license_cu</artifactId>
+    	<version>3.8.48</version>
+    </dependency>
+	</dependencies> 
+	
+	
+	
+	</project>

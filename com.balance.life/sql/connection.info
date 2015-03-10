@@ -1,0 +1,6 @@
+<Resource removeAbandoned="true" maxWait="100000" maxIdle="5" maxActive="10"
+  password="tomcat"
+  username="db2admin"
+  url="jdbc:db2://localhost:50000/SDMPMP2"
+  driverClassName="com.ibm.db2.jcc.DB2Driver" type="javax.sql.DataSource"
+  auth="Container" name="jdbc/db2/sdmpmplocal"> -<parameter> <name>factory</name> <value>org.apache.commons.dbcp.BasicDataSourceFactory</value> </parameter> </Resource> 

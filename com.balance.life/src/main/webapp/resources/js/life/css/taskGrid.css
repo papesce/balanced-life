@@ -1,0 +1,17 @@
+.dgrid.taskTable {
+	height: 200px;
+	
+}
+
+.taskTable .dgrid-row-table {
+	height: auto;
+}
+
+.taskTable .field-name {
+	width: 160px;
+}
+
+
+.taskGridTable {
+	width: 600px;
+}
