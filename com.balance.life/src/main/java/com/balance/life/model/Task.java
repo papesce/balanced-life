@@ -1,4 +1,4 @@
-package com.balance.life;
+package com.balance.life.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

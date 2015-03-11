@@ -1991,7 +1991,7 @@ java.lang.ClassNotFoundException: org.springframework.security.config.annotation
 10:08:42.554 [localhost-startStop-1] DEBUG o.s.c.i.s.PathMatchingResourcePatternResolver - Searching directory [X:\workspaces\balance\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\com.balance.life\WEB-INF\classes\com\balance\life] for files matching pattern [X:/workspaces/balance/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/com.balance.life/WEB-INF/classes/com/balance/life/**/*TaskRepositoryImpl.class]
 10:08:42.569 [localhost-startStop-1] DEBUG o.s.c.i.s.PathMatchingResourcePatternResolver - Searching directory [X:\workspaces\balance\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\com.balance.life\WEB-INF\classes\com\balance\life\config] for files matching pattern [X:/workspaces/balance/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/com.balance.life/WEB-INF/classes/com/balance/life/**/*TaskRepositoryImpl.class]
 10:08:42.569 [localhost-startStop-1] DEBUG o.s.c.i.s.PathMatchingResourcePatternResolver - Resolved location pattern [classpath*:com/balance/life/**/*TaskRepositoryImpl.class] to resources []
-10:08:42.647 [localhost-startStop-1] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Spring Data JPA - Registering repository: taskRepository - Interface: com.balance.life.TaskRepository - Factory: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
+10:08:42.647 [localhost-startStop-1] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Spring Data JPA - Registering repository: taskRepository - Interface: com.balance.life.repo.TaskRepository - Factory: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
 10:08:42.772 [localhost-startStop-1] DEBUG o.s.b.f.x.BeanDefinitionParserDelegate - Neither XML 'id' nor 'name' specified - using generated bean name [org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter#28c0b321]
 10:08:42.772 [localhost-startStop-1] DEBUG o.s.b.f.xml.XmlBeanDefinitionReader - Loaded 7 bean definitions from location pattern [classpath:jpaConfig.xml]
 10:08:42.897 [localhost-startStop-1] DEBUG o.s.c.a.ConfigurationClassBeanDefinitionReader - Registered bean definition for imported @Configuration class org.springframework.boot.autoconfigure.PropertyPlaceholderAutoConfiguration
@@ -6470,7 +6470,7 @@ java.net.URLClassLoader@5479e3f
 	Validation Mode: AUTO
 	Jar files URLs []
 	Managed classes names [
-		com.balance.life.Task]
+		com.balance.life.model.Task]
 	Mapping files names []
 	Properties []
 10:09:26.873 [localhost-startStop-1] DEBUG o.h.i.internal.IntegratorServiceImpl - Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
@@ -6612,18 +6612,18 @@ java.net.URLClassLoader@5479e3f
 10:09:45.932 [localhost-startStop-1] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.DB2Dialect
 10:09:47.088 [localhost-startStop-1] DEBUG org.hibernate.cfg.Configuration - Processing hbm.xml files
 10:09:47.104 [localhost-startStop-1] DEBUG org.hibernate.cfg.Configuration - Process annotated classes
-10:09:47.230 [localhost-startStop-1] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.balance.life.Task
+10:09:47.230 [localhost-startStop-1] DEBUG org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.balance.life.model.Task
 10:09:47.792 [localhost-startStop-1] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 10:09:48.182 [localhost-startStop-1] DEBUG o.h.cfg.annotations.EntityBinder - Import with entity name Task
-10:09:48.308 [localhost-startStop-1] DEBUG o.h.cfg.annotations.EntityBinder - Bind entity com.balance.life.Task on table Task
+10:09:48.308 [localhost-startStop-1] DEBUG o.h.cfg.annotations.EntityBinder - Bind entity com.balance.life.model.Task on table Task
 10:09:48.902 [localhost-startStop-1] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Task), mappingColumn=id, insertable=true, updatable=true, unique=false}
 10:09:48.996 [localhost-startStop-1] DEBUG o.h.cfg.annotations.PropertyBinder - MetadataSourceProcessor property id with lazy=false
-10:09:49.042 [localhost-startStop-1] DEBUG o.h.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.balance.life.Task:id]
+10:09:49.042 [localhost-startStop-1] DEBUG o.h.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.balance.life.model.Task:id]
 10:09:49.105 [localhost-startStop-1] DEBUG o.h.c.annotations.SimpleValueBinder - building SimpleValue for id
 10:09:49.136 [localhost-startStop-1] DEBUG o.h.cfg.annotations.PropertyBinder - Building property id
 10:09:49.245 [localhost-startStop-1] DEBUG org.hibernate.cfg.Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(Task), mappingColumn=name, insertable=true, updatable=true, unique=false}
 10:09:49.261 [localhost-startStop-1] DEBUG o.h.cfg.annotations.PropertyBinder - MetadataSourceProcessor property name with lazy=false
-10:09:49.261 [localhost-startStop-1] DEBUG o.h.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.balance.life.Task:name]
+10:09:49.261 [localhost-startStop-1] DEBUG o.h.cfg.AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [com.balance.life.model.Task:name]
 10:09:49.261 [localhost-startStop-1] DEBUG o.h.c.annotations.SimpleValueBinder - building SimpleValue for name
 10:09:49.261 [localhost-startStop-1] DEBUG o.h.cfg.annotations.PropertyBinder - Building property name
 10:09:49.340 [localhost-startStop-1] DEBUG o.h.c.annotations.SimpleValueBinder - Starting fillSimpleValue for id
@@ -6681,7 +6681,7 @@ java.net.URLClassLoader@5479e3f
 10:09:52.920 [localhost-startStop-1] DEBUG o.h.secure.spi.JaccIntegrator - Skipping JACC integration as it was not enabled
 10:09:53.171 [localhost-startStop-1] DEBUG o.hibernate.engine.spi.CascadeStyles - External cascade style regsitration [persist : STYLE_PERSIST_SKIPLAZY] overrode base registration [STYLE_PERSIST]
 10:09:53.576 [localhost-startStop-1] DEBUG o.h.i.f.i.DefaultIdentifierGeneratorFactory - Setting dialect [org.hibernate.dialect.DB2Dialect]
-10:09:55.747 [localhost-startStop-1] DEBUG o.h.p.entity.AbstractEntityPersister - Static SQL for entity: com.balance.life.Task
+10:09:55.747 [localhost-startStop-1] DEBUG o.h.p.entity.AbstractEntityPersister - Static SQL for entity: com.balance.life.model.Task
 10:09:55.747 [localhost-startStop-1] DEBUG o.h.p.entity.AbstractEntityPersister -  Version select: select id from Task where id =?
 10:09:55.747 [localhost-startStop-1] DEBUG o.h.p.entity.AbstractEntityPersister -  Snapshot select: select task_.id, task_.name as name2_0_ from Task task_ where task_.id=?
 10:09:55.747 [localhost-startStop-1] DEBUG o.h.p.entity.AbstractEntityPersister -  Insert 0: insert into Task (name, id) values (?, ?)
@@ -6692,158 +6692,158 @@ java.net.URLClassLoader@5479e3f
 10:09:56.732 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:56.732 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.263 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.389 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.389 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [NONE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [NONE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@39607639]
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [READ]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [READ]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5a98fb4a]
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [UPGRADE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [UPGRADE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3426e15d]
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [UPGRADE_NOWAIT]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [UPGRADE_NOWAIT]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@13292ae8]
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [UPGRADE_SKIPLOCKED]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [UPGRADE_SKIPLOCKED]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7251a162]
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [FORCE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
+10:09:57.451 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [FORCE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@10ad3846]
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.451 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [PESSIMISTIC_READ]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [PESSIMISTIC_READ]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@6aa3affb]
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [PESSIMISTIC_WRITE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [PESSIMISTIC_WRITE]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1013e059]
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [PESSIMISTIC_FORCE_INCREMENT]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [PESSIMISTIC_FORCE_INCREMENT]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=? for read only with rs use and keep update locks
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@402d7b39]
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [OPTIMISTIC]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [OPTIMISTIC]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@aa22c6f]
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.p.w.spi.MetamodelGraphWalker - Visiting attribute path : name
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
 10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.e.i.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.Task)
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.l.p.b.spi.LoadPlanTreePrinter - LoadPlan(entity=com.balance.life.model.Task)
     - Returns
-       - EntityReturnImpl(entity=com.balance.life.Task, querySpaceUid=<gen:0>, path=com.balance.life.Task)
+       - EntityReturnImpl(entity=com.balance.life.model.Task, querySpaceUid=<gen:0>, path=com.balance.life.model.Task)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.Task)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=com.balance.life.model.Task)
           - SQL table alias mapping - task0_
           - alias suffix - 0_
           - suffixed key columns - {id1_0_0_}
 
-10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.Task [OPTIMISTIC_FORCE_INCREMENT]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
-10:09:57.857 [localhost-startStop-1] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_MERGE on entity com.balance.life.Task: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
-10:09:57.857 [localhost-startStop-1] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_REFRESH on entity com.balance.life.Task: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
+10:09:57.467 [localhost-startStop-1] DEBUG o.h.loader.entity.plan.EntityLoader - Static select for entity com.balance.life.model.Task [OPTIMISTIC_FORCE_INCREMENT]: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
+10:09:57.857 [localhost-startStop-1] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_MERGE on entity com.balance.life.model.Task: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
+10:09:57.857 [localhost-startStop-1] DEBUG org.hibernate.loader.Loader - Static select for action ACTION_REFRESH on entity com.balance.life.model.Task: select task0_.id as id1_0_0_, task0_.name as name2_0_0_ from Task task0_ where task0_.id=?
 10:09:57.905 [localhost-startStop-1] DEBUG o.h.internal.SessionFactoryRegistry - Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@52de8d52
 10:09:57.905 [localhost-startStop-1] DEBUG o.h.internal.SessionFactoryRegistry - Registering SessionFactory: d28db936-bff1-4df8-a942-a0f6a4e0b52f (<unnamed>)
 10:09:57.905 [localhost-startStop-1] DEBUG o.h.internal.SessionFactoryRegistry - Not binding SessionFactory to JNDI, no JNDI name configured
@@ -6907,9 +6907,9 @@ java.net.URLClassLoader@5479e3f
 10:10:01.754 [localhost-startStop-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskRestController'
 10:10:01.754 [localhost-startStop-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean 'taskRestController'
 10:10:01.754 [localhost-startStop-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
-10:10:01.994 [localhost-startStop-1] DEBUG o.s.b.f.annotation.InjectionMetadata - Registered injected element on class [com.balance.life.TaskRestController]: AutowiredFieldElement for com.balance.life.TaskRepository com.balance.life.TaskRestController.taskRepository
+10:10:01.994 [localhost-startStop-1] DEBUG o.s.b.f.annotation.InjectionMetadata - Registered injected element on class [com.balance.life.TaskRestController]: AutowiredFieldElement for com.balance.life.repo.TaskRepository com.balance.life.TaskRestController.taskRepository
 10:10:01.995 [localhost-startStop-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Eagerly caching bean 'taskRestController' to allow for resolving potential circular references
-10:10:02.016 [localhost-startStop-1] DEBUG o.s.b.f.annotation.InjectionMetadata - Processing injected element of bean 'taskRestController': AutowiredFieldElement for com.balance.life.TaskRepository com.balance.life.TaskRestController.taskRepository
+10:10:02.016 [localhost-startStop-1] DEBUG o.s.b.f.annotation.InjectionMetadata - Processing injected element of bean 'taskRestController': AutowiredFieldElement for com.balance.life.repo.TaskRepository com.balance.life.TaskRestController.taskRepository
 10:10:02.027 [localhost-startStop-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskRepository'
 10:10:02.027 [localhost-startStop-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Creating instance of bean 'taskRepository'
 10:10:02.027 [localhost-startStop-1] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'org.springframework.transaction.config.internalTransactionAdvisor'
@@ -7324,11 +7324,11 @@ java.net.URLClassLoader@5479e3f
 10:10:11.889 [localhost-startStop-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Looking for request mappings in application context: WebApplicationContext for namespace 'appServlet-servlet': startup date [Tue Mar 10 10:08:02 CDT 2015]; parent: Root WebApplicationContext
 10:10:12.311 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.balance.life.HomeController.home(org.springframework.mobile.device.site.SitePreference,org.springframework.mobile.device.Device,java.util.Locale,org.springframework.ui.Model)
 10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/add],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String com.balance.life.TableController.request()
-10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks/{id}],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.balance.life.Task com.balance.life.TaskRestController.get(long)
-10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks/{id}],methods=[PUT],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.balance.life.Task com.balance.life.TaskRestController.update(long,com.balance.life.Task)
+10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks/{id}],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.balance.life.model.Task com.balance.life.TaskRestController.get(long)
+10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks/{id}],methods=[PUT],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.balance.life.model.Task com.balance.life.TaskRestController.update(long,com.balance.life.model.Task)
 10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks/{id}],methods=[DELETE],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public org.springframework.http.ResponseEntity<java.lang.Boolean> com.balance.life.TaskRestController.delete(long)
-10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks],methods=[POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.balance.life.Task com.balance.life.TaskRestController.create(com.balance.life.Task)
-10:10:12.344 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.util.List<com.balance.life.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)
+10:10:12.327 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks],methods=[POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.balance.life.model.Task com.balance.life.TaskRestController.create(com.balance.life.model.Task)
+10:10:12.344 [localhost-startStop-1] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/rest/tasks],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.util.List<com.balance.life.model.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)
 10:10:12.344 [localhost-startStop-1] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Searching for key 'error.path:/error' in [environmentProperties]
 10:10:12.344 [localhost-startStop-1] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Searching for key 'error.path:/error' in [servletConfigInitParams]
 10:10:12.344 [localhost-startStop-1] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Searching for key 'error.path:/error' in [servletContextInitParams]
@@ -16817,13 +16817,13 @@ INFO: Server startup in 276598 ms
 10:11:44.077 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Successfully completed request
 10:11:44.657 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - DispatcherServlet with name 'appServlet' processing GET request for [/life/rest/tasks]
 10:11:44.659 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Looking up handler method for path /rest/tasks
-10:11:44.659 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
+10:11:44.659 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.model.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
 10:11:44.659 [http-nio-8080-exec-5] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'taskRestController'
 10:11:44.659 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Last-Modified value for [/life/rest/tasks] is: -1
 10:11:44.666 [http-nio-8080-exec-5] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
 10:11:44.670 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - DispatcherServlet with name 'appServlet' processing GET request for [/life/rest/tasks]
 10:11:44.670 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Looking up handler method for path /rest/tasks
-10:11:44.670 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
+10:11:44.670 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.model.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
 10:11:44.671 [http-nio-8080-exec-4] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'taskRestController'
 10:11:44.671 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Last-Modified value for [/life/rest/tasks] is: -1
 10:11:44.673 [http-nio-8080-exec-4] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
@@ -16851,8 +16851,8 @@ INFO: Server startup in 276598 ms
 10:21:31.337 [http-nio-8080-exec-4] DEBUG o.h.e.t.i.jdbc.JdbcTransaction - disabling autocommit
 10:21:31.337 [http-nio-8080-exec-4] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC transaction [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@3d96e0de]
 10:21:31.337 [http-nio-8080-exec-4] DEBUG o.h.jpa.criteria.CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0
-10:21:31.838 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from com.balance.life.Task as generatedAlias0
-10:21:31.869 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from com.balance.life.Task as generatedAlias0
+10:21:31.838 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from com.balance.life.model.Task as generatedAlias0
+10:21:31.869 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from com.balance.life.model.Task as generatedAlias0
 10:21:32.010 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.QueryTranslatorImpl - --- HQL AST ---
  \-[QUERY] Node: 'query'
     \-[SELECT_FROM] Node: 'SELECT_FROM'
@@ -16889,9 +16889,9 @@ INFO: Server startup in 276598 ms
 10:21:32.010 [http-nio-8080-exec-4] DEBUG o.h.hql.internal.ast.ErrorCounter - throwQueryException() : no errors
 10:21:32.759 [http-nio-8080-exec-4] DEBUG o.h.h.i.antlr.HqlSqlBaseWalker - select << begin [level=1, statement=select]
 10:21:32.759 [http-nio-8080-exec-5] DEBUG o.h.h.i.antlr.HqlSqlBaseWalker - select << begin [level=1, statement=select]
-10:21:32.979 [http-nio-8080-exec-5] DEBUG o.h.h.internal.ast.tree.FromElement - FromClause{level=1} : com.balance.life.Task (generatedAlias0) -> task0_
+10:21:32.979 [http-nio-8080-exec-5] DEBUG o.h.h.internal.ast.tree.FromElement - FromClause{level=1} : com.balance.life.model.Task (generatedAlias0) -> task0_
 10:21:32.979 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.tree.FromReferenceNode - Resolved : generatedAlias0 -> task0_.id
-10:21:33.010 [http-nio-8080-exec-4] DEBUG o.h.h.internal.ast.tree.FromElement - FromClause{level=1} : com.balance.life.Task (generatedAlias0) -> task0_
+10:21:33.010 [http-nio-8080-exec-4] DEBUG o.h.h.internal.ast.tree.FromElement - FromClause{level=1} : com.balance.life.model.Task (generatedAlias0) -> task0_
 10:21:33.010 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.tree.FromReferenceNode - Resolved : generatedAlias0 -> task0_.id
 10:21:33.010 [http-nio-8080-exec-4] DEBUG o.h.h.i.antlr.HqlSqlBaseWalker - select : finishing up [level=1, statement=select]
 10:21:33.010 [http-nio-8080-exec-4] DEBUG o.h.hql.internal.ast.HqlSqlWalker - processQuery() :  ( SELECT ( {select clause} task0_.id ) ( FromClause{level=1} Task task0_ ) )
@@ -16902,10 +16902,10 @@ INFO: Server startup in 276598 ms
 10:21:33.104 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.QueryTranslatorImpl - --- SQL AST ---
  \-[SELECT] QueryNode: 'SELECT'  querySpaces (Task)
     +-[SELECT_CLAUSE] SelectClause: '{select clause}'
-    |  +-[ALIAS_REF] IdentNode: 'task0_.id as id1_0_' {alias=generatedAlias0, className=com.balance.life.Task, tableAlias=task0_}
+    |  +-[ALIAS_REF] IdentNode: 'task0_.id as id1_0_' {alias=generatedAlias0, className=com.balance.life.model.Task, tableAlias=task0_}
     |  \-[SQL_TOKEN] SqlFragment: 'task0_.name as name2_0_'
     \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[task0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
-       \-[FROM_FRAGMENT] FromElement: 'Task task0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=Task,tableAlias=task0_,origin=null,columns={,className=com.balance.life.Task}}
+       \-[FROM_FRAGMENT] FromElement: 'Task task0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=Task,tableAlias=task0_,origin=null,columns={,className=com.balance.life.model.Task}}
 
 10:21:33.104 [http-nio-8080-exec-5] DEBUG o.h.hql.internal.ast.ErrorCounter - throwQueryException() : no errors
 10:21:33.135 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.util.JoinProcessor - Using FROM fragment [Task task0_]
@@ -16913,16 +16913,16 @@ INFO: Server startup in 276598 ms
 10:21:33.135 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.QueryTranslatorImpl - --- SQL AST ---
  \-[SELECT] QueryNode: 'SELECT'  querySpaces (Task)
     +-[SELECT_CLAUSE] SelectClause: '{select clause}'
-    |  +-[ALIAS_REF] IdentNode: 'task0_.id as id1_0_' {alias=generatedAlias0, className=com.balance.life.Task, tableAlias=task0_}
+    |  +-[ALIAS_REF] IdentNode: 'task0_.id as id1_0_' {alias=generatedAlias0, className=com.balance.life.model.Task, tableAlias=task0_}
     |  \-[SQL_TOKEN] SqlFragment: 'task0_.name as name2_0_'
     \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[task0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
-       \-[FROM_FRAGMENT] FromElement: 'Task task0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=Task,tableAlias=task0_,origin=null,columns={,className=com.balance.life.Task}}
+       \-[FROM_FRAGMENT] FromElement: 'Task task0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=Task,tableAlias=task0_,origin=null,columns={,className=com.balance.life.model.Task}}
 
 10:21:33.135 [http-nio-8080-exec-4] DEBUG o.h.hql.internal.ast.ErrorCounter - throwQueryException() : no errors
-10:21:33.166 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.QueryTranslatorImpl - HQL: select generatedAlias0 from com.balance.life.Task as generatedAlias0
+10:21:33.166 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.QueryTranslatorImpl - HQL: select generatedAlias0 from com.balance.life.model.Task as generatedAlias0
 10:21:33.166 [http-nio-8080-exec-4] DEBUG o.h.h.i.ast.QueryTranslatorImpl - SQL: select task0_.id as id1_0_, task0_.name as name2_0_ from Task task0_
 10:21:33.166 [http-nio-8080-exec-4] DEBUG o.h.hql.internal.ast.ErrorCounter - throwQueryException() : no errors
-10:21:33.182 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.QueryTranslatorImpl - HQL: select generatedAlias0 from com.balance.life.Task as generatedAlias0
+10:21:33.182 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.QueryTranslatorImpl - HQL: select generatedAlias0 from com.balance.life.model.Task as generatedAlias0
 10:21:33.182 [http-nio-8080-exec-5] DEBUG o.h.h.i.ast.QueryTranslatorImpl - SQL: select task0_.id as id1_0_, task0_.name as name2_0_ from Task task0_
 10:21:33.182 [http-nio-8080-exec-5] DEBUG o.h.hql.internal.ast.ErrorCounter - throwQueryException() : no errors
 10:21:33.384 [http-nio-8080-exec-5] DEBUG o.s.d.j.r.s.CrudMethodMetadataPostProcessor$ThreadBoundTargetSource - Initializing lazy target object
@@ -16930,52 +16930,52 @@ INFO: Server startup in 276598 ms
 10:21:33.541 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select task0_.id as id1_0_, task0_.name as name2_0_ from Task task0_
 10:21:33.573 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result set row: 0
 10:21:33.573 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 0
-10:21:33.619 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#1]
-10:21:33.651 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#1]
+10:21:33.619 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#1]
+10:21:33.651 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#1]
 10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 1
-10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#2]
+10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#2]
 10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 2
-10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#641]
+10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#641]
 10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 3
-10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#661]
+10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#661]
 10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 4
-10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#681]
+10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#681]
 10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 5
-10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#581]
-10:21:33.729 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#1]
-10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#1]
-10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#2]
-10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#2]
-10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#641]
-10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#641]
-10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#661]
-10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#661]
-10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#681]
-10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#681]
-10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#581]
-10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#581]
+10:21:33.697 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#581]
+10:21:33.729 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#1]
+10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#1]
+10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#2]
+10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#2]
+10:21:33.791 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#641]
+10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#641]
+10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#661]
+10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#661]
+10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#681]
+10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#681]
+10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#581]
+10:21:33.822 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#581]
 10:21:33.838 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result set row: 1
-10:21:33.838 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#2]
+10:21:33.838 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#2]
 10:21:33.888 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result set row: 2
-10:21:33.934 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#641]
+10:21:33.934 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#641]
 10:21:33.934 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result set row: 3
-10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#661]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#661]
 10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result set row: 4
-10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#681]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#681]
 10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result set row: 5
-10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#581]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#1]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#1]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#2]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#2]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#641]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#641]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#661]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#661]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#681]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#681]
-10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#581]
-10:21:33.936 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#581]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#581]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#1]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#1]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#2]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#2]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#641]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#641]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#661]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#661]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#681]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#681]
+10:21:33.935 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#581]
+10:21:33.936 [http-nio-8080-exec-5] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#581]
 10:21:33.941 [http-nio-8080-exec-5] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
 10:21:33.941 [http-nio-8080-exec-5] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [org.hibernate.jpa.internal.EntityManagerImpl@63af2700]
 10:21:33.941 [http-nio-8080-exec-5] DEBUG o.h.e.t.spi.AbstractTransactionImpl - committing
@@ -16990,17 +16990,17 @@ INFO: Server startup in 276598 ms
 10:21:33.988 [http-nio-8080-exec-4] DEBUG o.h.e.t.i.jdbc.JdbcTransaction - re-enabling autocommit
 10:21:33.988 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Resetting read-only flag of JDBC Connection [com.ibm.db2.jcc.t4.b@39a96333]
 10:21:33.988 [http-nio-8080-exec-4] DEBUG o.s.orm.jpa.JpaTransactionManager - Not closing pre-bound JPA EntityManager after transaction
-10:21:34.378 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.Task@1c3098e1, com.balance.life.Task@1e7cc0ce, com.balance.life.Task@32b21ff5, com.balance.life.Task@63d19172, com.balance.life.Task@2404c753, com.balance.life.Task@5c8619ad]
-10:21:34.378 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.Task@1c3098e1, com.balance.life.Task@1e7cc0ce, com.balance.life.Task@32b21ff5, com.balance.life.Task@63d19172, com.balance.life.Task@2404c753, com.balance.life.Task@5c8619ad]
-10:21:34.378 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.Task@583ae4f3, com.balance.life.Task@6dff2dd5, com.balance.life.Task@2a2a89bf, com.balance.life.Task@672d1cdb, com.balance.life.Task@68bf61b1, com.balance.life.Task@7cba78f6]
-10:21:34.378 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.Task@583ae4f3, com.balance.life.Task@6dff2dd5, com.balance.life.Task@2a2a89bf, com.balance.life.Task@672d1cdb, com.balance.life.Task@68bf61b1, com.balance.life.Task@7cba78f6]
-10:21:34.769 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.Task@583ae4f3, com.balance.life.Task@6dff2dd5, com.balance.life.Task@2a2a89bf, com.balance.life.Task@672d1cdb, com.balance.life.Task@68bf61b1, com.balance.life.Task@7cba78f6]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
+10:21:34.378 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.model.Task@1c3098e1, com.balance.life.model.Task@1e7cc0ce, com.balance.life.model.Task@32b21ff5, com.balance.life.model.Task@63d19172, com.balance.life.model.Task@2404c753, com.balance.life.model.Task@5c8619ad]
+10:21:34.378 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.model.Task@1c3098e1, com.balance.life.model.Task@1e7cc0ce, com.balance.life.model.Task@32b21ff5, com.balance.life.model.Task@63d19172, com.balance.life.model.Task@2404c753, com.balance.life.model.Task@5c8619ad]
+10:21:34.378 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.model.Task@583ae4f3, com.balance.life.model.Task@6dff2dd5, com.balance.life.model.Task@2a2a89bf, com.balance.life.model.Task@672d1cdb, com.balance.life.model.Task@68bf61b1, com.balance.life.model.Task@7cba78f6]
+10:21:34.378 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.model.Task@583ae4f3, com.balance.life.model.Task@6dff2dd5, com.balance.life.model.Task@2a2a89bf, com.balance.life.model.Task@672d1cdb, com.balance.life.model.Task@68bf61b1, com.balance.life.model.Task@7cba78f6]
+10:21:34.769 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.model.Task@583ae4f3, com.balance.life.model.Task@6dff2dd5, com.balance.life.model.Task@2a2a89bf, com.balance.life.model.Task@672d1cdb, com.balance.life.model.Task@68bf61b1, com.balance.life.model.Task@7cba78f6]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
 10:21:34.769 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'appServlet': assuming HandlerAdapter completed request handling
 10:21:34.769 [http-nio-8080-exec-5] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
 10:21:34.769 [http-nio-8080-exec-5] DEBUG o.s.o.jpa.EntityManagerFactoryUtils - Closing JPA EntityManager
 10:21:34.769 [http-nio-8080-exec-5] DEBUG o.h.e.j.i.LogicalConnectionImpl - Releasing JDBC connection
 10:21:34.769 [http-nio-8080-exec-5] DEBUG o.h.e.j.i.LogicalConnectionImpl - Released JDBC connection
-10:21:34.769 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.Task@1c3098e1, com.balance.life.Task@1e7cc0ce, com.balance.life.Task@32b21ff5, com.balance.life.Task@63d19172, com.balance.life.Task@2404c753, com.balance.life.Task@5c8619ad]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
+10:21:34.769 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.model.Task@1c3098e1, com.balance.life.model.Task@1e7cc0ce, com.balance.life.model.Task@32b21ff5, com.balance.life.model.Task@63d19172, com.balance.life.model.Task@2404c753, com.balance.life.model.Task@5c8619ad]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
 10:21:34.769 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'appServlet': assuming HandlerAdapter completed request handling
 10:21:34.769 [http-nio-8080-exec-4] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
 10:21:34.769 [http-nio-8080-exec-4] DEBUG o.s.o.jpa.EntityManagerFactoryUtils - Closing JPA EntityManager
@@ -17081,7 +17081,7 @@ INFO: Server startup in 276598 ms
 10:21:47.983 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Successfully completed request
 10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - DispatcherServlet with name 'appServlet' processing GET request for [/life/rest/tasks]
 10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Looking up handler method for path /rest/tasks
-10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
+10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.model.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
 10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'taskRestController'
 10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Last-Modified value for [/life/rest/tasks] is: -1
 10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
@@ -17091,7 +17091,7 @@ INFO: Server startup in 276598 ms
 10:21:48.186 [http-nio-8080-exec-6] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:db2://localhost:50000/LIFE]
 10:21:48.186 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - DispatcherServlet with name 'appServlet' processing GET request for [/life/rest/tasks]
 10:21:48.233 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Looking up handler method for path /rest/tasks
-10:21:48.233 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
+10:21:48.233 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.model.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
 10:21:48.233 [http-nio-8080-exec-4] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'taskRestController'
 10:21:48.233 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Last-Modified value for [/life/rest/tasks] is: -1
 10:21:48.233 [http-nio-8080-exec-4] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
@@ -17108,29 +17108,29 @@ INFO: Server startup in 276598 ms
 10:21:48.669 [http-nio-8080-exec-6] DEBUG o.h.jpa.criteria.CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0
 10:21:48.669 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select task0_.id as id1_0_, task0_.name as name2_0_ from Task task0_
 10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result set row: 0
-10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#1]
+10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#1]
 10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result set row: 1
-10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#2]
+10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#2]
 10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result set row: 2
-10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#641]
+10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#641]
 10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result set row: 3
-10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#661]
+10:21:48.702 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#661]
 10:21:48.717 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result set row: 4
-10:21:48.717 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#681]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#681]
 10:21:48.717 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result set row: 5
-10:21:48.717 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#581]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#1]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#1]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#2]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#2]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#641]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#641]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#661]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#661]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#681]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#681]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#581]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#581]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#581]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#1]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#1]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#2]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#2]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#641]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#641]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#661]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#661]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#681]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#681]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#581]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#581]
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [org.hibernate.jpa.internal.EntityManagerImpl@72cde201]
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.e.t.spi.AbstractTransactionImpl - committing
@@ -17138,9 +17138,9 @@ INFO: Server startup in 276598 ms
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.h.e.t.i.jdbc.JdbcTransaction - re-enabling autocommit
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Resetting read-only flag of JDBC Connection [com.ibm.db2.jcc.t4.b@7c0a1228]
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.orm.jpa.JpaTransactionManager - Not closing pre-bound JPA EntityManager after transaction
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.Task@58ea9bd2, com.balance.life.Task@5d18e75c, com.balance.life.Task@77d737a3, com.balance.life.Task@55f59c65, com.balance.life.Task@36dc9c79, com.balance.life.Task@4775f3e3]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.Task@58ea9bd2, com.balance.life.Task@5d18e75c, com.balance.life.Task@77d737a3, com.balance.life.Task@55f59c65, com.balance.life.Task@36dc9c79, com.balance.life.Task@4775f3e3]
-10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.Task@58ea9bd2, com.balance.life.Task@5d18e75c, com.balance.life.Task@77d737a3, com.balance.life.Task@55f59c65, com.balance.life.Task@36dc9c79, com.balance.life.Task@4775f3e3]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.model.Task@58ea9bd2, com.balance.life.model.Task@5d18e75c, com.balance.life.model.Task@77d737a3, com.balance.life.model.Task@55f59c65, com.balance.life.model.Task@36dc9c79, com.balance.life.model.Task@4775f3e3]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.model.Task@58ea9bd2, com.balance.life.model.Task@5d18e75c, com.balance.life.model.Task@77d737a3, com.balance.life.model.Task@55f59c65, com.balance.life.model.Task@36dc9c79, com.balance.life.model.Task@4775f3e3]
+10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.model.Task@58ea9bd2, com.balance.life.model.Task@5d18e75c, com.balance.life.model.Task@77d737a3, com.balance.life.model.Task@55f59c65, com.balance.life.model.Task@36dc9c79, com.balance.life.model.Task@4775f3e3]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'appServlet': assuming HandlerAdapter completed request handling
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
 10:21:48.717 [http-nio-8080-exec-6] DEBUG o.s.o.jpa.EntityManagerFactoryUtils - Closing JPA EntityManager
@@ -17156,29 +17156,29 @@ INFO: Server startup in 276598 ms
 10:21:48.733 [http-nio-8080-exec-4] DEBUG o.h.jpa.criteria.CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0
 10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select task0_.id as id1_0_, task0_.name as name2_0_ from Task task0_
 10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 0
-10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#1]
+10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#1]
 10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 1
-10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#2]
+10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#2]
 10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 2
-10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#641]
+10:21:48.733 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#641]
 10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 3
-10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#661]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#661]
 10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 4
-10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#681]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#681]
 10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result set row: 5
-10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#581]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#1]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#1]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#2]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#2]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#641]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#641]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#661]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#661]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#681]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#681]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#581]
-10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#581]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#581]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#1]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#1]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#2]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#2]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#641]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#641]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#661]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#661]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#681]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#681]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#581]
+10:21:48.795 [http-nio-8080-exec-4] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#581]
 10:21:48.795 [http-nio-8080-exec-4] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
 10:21:48.795 [http-nio-8080-exec-4] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [org.hibernate.jpa.internal.EntityManagerImpl@391b1e62]
 10:21:48.889 [http-nio-8080-exec-4] DEBUG o.h.e.t.spi.AbstractTransactionImpl - committing
@@ -17186,9 +17186,9 @@ INFO: Server startup in 276598 ms
 10:21:48.889 [http-nio-8080-exec-4] DEBUG o.h.e.t.i.jdbc.JdbcTransaction - re-enabling autocommit
 10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Resetting read-only flag of JDBC Connection [com.ibm.db2.jcc.t4.b@37fbfc9]
 10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.orm.jpa.JpaTransactionManager - Not closing pre-bound JPA EntityManager after transaction
-10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.Task@53caf131, com.balance.life.Task@1b61078a, com.balance.life.Task@7d5d8f6d, com.balance.life.Task@1e48ed63, com.balance.life.Task@1a0fd4e2, com.balance.life.Task@9c1dd7e]
-10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.Task@53caf131, com.balance.life.Task@1b61078a, com.balance.life.Task@7d5d8f6d, com.balance.life.Task@1e48ed63, com.balance.life.Task@1a0fd4e2, com.balance.life.Task@9c1dd7e]
-10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.Task@53caf131, com.balance.life.Task@1b61078a, com.balance.life.Task@7d5d8f6d, com.balance.life.Task@1e48ed63, com.balance.life.Task@1a0fd4e2, com.balance.life.Task@9c1dd7e]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
+10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.model.Task@53caf131, com.balance.life.model.Task@1b61078a, com.balance.life.model.Task@7d5d8f6d, com.balance.life.model.Task@1e48ed63, com.balance.life.model.Task@1a0fd4e2, com.balance.life.model.Task@9c1dd7e]
+10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.model.Task@53caf131, com.balance.life.model.Task@1b61078a, com.balance.life.model.Task@7d5d8f6d, com.balance.life.model.Task@1e48ed63, com.balance.life.model.Task@1a0fd4e2, com.balance.life.model.Task@9c1dd7e]
+10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.model.Task@53caf131, com.balance.life.model.Task@1b61078a, com.balance.life.model.Task@7d5d8f6d, com.balance.life.model.Task@1e48ed63, com.balance.life.model.Task@1a0fd4e2, com.balance.life.model.Task@9c1dd7e]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
 10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'appServlet': assuming HandlerAdapter completed request handling
 10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
 10:21:48.889 [http-nio-8080-exec-4] DEBUG o.s.o.jpa.EntityManagerFactoryUtils - Closing JPA EntityManager
@@ -17214,7 +17214,7 @@ INFO: Server startup in 276598 ms
 10:22:11.820 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Successfully completed request
 10:22:12.262 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - DispatcherServlet with name 'appServlet' processing GET request for [/life/rest/tasks]
 10:22:12.263 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Looking up handler method for path /rest/tasks
-10:22:12.263 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
+10:22:12.263 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.model.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
 10:22:12.263 [http-nio-8080-exec-10] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'taskRestController'
 10:22:12.263 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Last-Modified value for [/life/rest/tasks] is: -1
 10:22:12.265 [http-nio-8080-exec-10] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
@@ -17224,7 +17224,7 @@ INFO: Server startup in 276598 ms
 10:22:12.266 [http-nio-8080-exec-10] DEBUG o.s.j.d.DriverManagerDataSource - Creating new JDBC DriverManager Connection to [jdbc:db2://localhost:50000/LIFE]
 10:22:12.277 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - DispatcherServlet with name 'appServlet' processing GET request for [/life/rest/tasks]
 10:22:12.277 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Looking up handler method for path /rest/tasks
-10:22:12.277 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
+10:22:12.277 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Returning handler method [public java.util.List<com.balance.life.model.Task> com.balance.life.TaskRestController.getRestTasks(java.lang.String,javax.servlet.http.HttpServletResponse)]
 10:22:12.277 [http-nio-8080-exec-8] DEBUG o.s.b.f.s.DefaultListableBeanFactory - Returning cached instance of singleton bean 'taskRestController'
 10:22:12.277 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Last-Modified value for [/life/rest/tasks] is: -1
 10:22:12.282 [http-nio-8080-exec-8] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
@@ -17241,29 +17241,29 @@ INFO: Server startup in 276598 ms
 10:22:12.612 [http-nio-8080-exec-8] DEBUG o.h.jpa.criteria.CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0
 10:22:12.612 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select task0_.id as id1_0_, task0_.name as name2_0_ from Task task0_
 10:22:12.632 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result set row: 0
-10:22:12.633 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#1]
+10:22:12.633 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#1]
 10:22:12.634 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result set row: 1
-10:22:12.634 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#2]
+10:22:12.634 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#2]
 10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result set row: 2
-10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#641]
+10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#641]
 10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result set row: 3
-10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#661]
+10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#661]
 10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result set row: 4
-10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#681]
+10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#681]
 10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result set row: 5
-10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#581]
-10:22:12.636 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#1]
-10:22:12.637 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#1]
-10:22:12.637 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#2]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#2]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#641]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#641]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#661]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#661]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#681]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#681]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#581]
-10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#581]
+10:22:12.636 [http-nio-8080-exec-8] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#581]
+10:22:12.636 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#1]
+10:22:12.637 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#1]
+10:22:12.637 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#2]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#2]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#641]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#641]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#661]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#661]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#681]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#681]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#581]
+10:22:12.641 [http-nio-8080-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#581]
 10:22:12.642 [http-nio-8080-exec-8] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
 10:22:12.642 [http-nio-8080-exec-8] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [org.hibernate.jpa.internal.EntityManagerImpl@7180586e]
 10:22:12.642 [http-nio-8080-exec-8] DEBUG o.h.e.t.spi.AbstractTransactionImpl - committing
@@ -17271,9 +17271,9 @@ INFO: Server startup in 276598 ms
 10:22:12.642 [http-nio-8080-exec-8] DEBUG o.h.e.t.i.jdbc.JdbcTransaction - re-enabling autocommit
 10:22:12.643 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Resetting read-only flag of JDBC Connection [com.ibm.db2.jcc.t4.b@1a4e984f]
 10:22:12.643 [http-nio-8080-exec-8] DEBUG o.s.orm.jpa.JpaTransactionManager - Not closing pre-bound JPA EntityManager after transaction
-10:22:12.643 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.Task@65998efd, com.balance.life.Task@791bfc9a, com.balance.life.Task@15e1da37, com.balance.life.Task@4f0d921, com.balance.life.Task@2d374124, com.balance.life.Task@bee8734]
-10:22:12.643 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.Task@65998efd, com.balance.life.Task@791bfc9a, com.balance.life.Task@15e1da37, com.balance.life.Task@4f0d921, com.balance.life.Task@2d374124, com.balance.life.Task@bee8734]
-10:22:12.645 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.Task@65998efd, com.balance.life.Task@791bfc9a, com.balance.life.Task@15e1da37, com.balance.life.Task@4f0d921, com.balance.life.Task@2d374124, com.balance.life.Task@bee8734]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
+10:22:12.643 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.model.Task@65998efd, com.balance.life.model.Task@791bfc9a, com.balance.life.model.Task@15e1da37, com.balance.life.model.Task@4f0d921, com.balance.life.model.Task@2d374124, com.balance.life.model.Task@bee8734]
+10:22:12.643 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.model.Task@65998efd, com.balance.life.model.Task@791bfc9a, com.balance.life.model.Task@15e1da37, com.balance.life.model.Task@4f0d921, com.balance.life.model.Task@2d374124, com.balance.life.model.Task@bee8734]
+10:22:12.645 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.model.Task@65998efd, com.balance.life.model.Task@791bfc9a, com.balance.life.model.Task@15e1da37, com.balance.life.model.Task@4f0d921, com.balance.life.model.Task@2d374124, com.balance.life.model.Task@bee8734]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
 10:22:12.645 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'appServlet': assuming HandlerAdapter completed request handling
 10:22:12.647 [http-nio-8080-exec-8] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
 10:22:12.647 [http-nio-8080-exec-8] DEBUG o.s.o.jpa.EntityManagerFactoryUtils - Closing JPA EntityManager
@@ -17289,29 +17289,29 @@ INFO: Server startup in 276598 ms
 10:22:12.702 [http-nio-8080-exec-10] DEBUG o.h.jpa.criteria.CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0
 10:22:12.702 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select task0_.id as id1_0_, task0_.name as name2_0_ from Task task0_
 10:22:12.704 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result set row: 0
-10:22:12.704 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#1]
+10:22:12.704 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#1]
 10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result set row: 1
-10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#2]
+10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#2]
 10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result set row: 2
-10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#641]
+10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#641]
 10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result set row: 3
-10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#661]
+10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#661]
 10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result set row: 4
-10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#681]
+10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#681]
 10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result set row: 5
-10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.Task#581]
-10:22:12.705 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#1]
-10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#1]
-10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#2]
-10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#2]
-10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#641]
-10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#641]
-10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#661]
-10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#661]
-10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#681]
-10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#681]
-10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.Task#581]
-10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.Task#581]
+10:22:12.705 [http-nio-8080-exec-10] DEBUG org.hibernate.loader.Loader - Result row: EntityKey[com.balance.life.model.Task#581]
+10:22:12.705 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#1]
+10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#1]
+10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#2]
+10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#2]
+10:22:12.706 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#641]
+10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#641]
+10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#661]
+10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#661]
+10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#681]
+10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#681]
+10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving associations for [com.balance.life.model.Task#581]
+10:22:12.707 [http-nio-8080-exec-10] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [com.balance.life.model.Task#581]
 10:22:12.708 [http-nio-8080-exec-10] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
 10:22:12.708 [http-nio-8080-exec-10] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [org.hibernate.jpa.internal.EntityManagerImpl@52260578]
 10:22:12.709 [http-nio-8080-exec-10] DEBUG o.h.e.t.spi.AbstractTransactionImpl - committing
@@ -17319,9 +17319,9 @@ INFO: Server startup in 276598 ms
 10:22:12.709 [http-nio-8080-exec-10] DEBUG o.h.e.t.i.jdbc.JdbcTransaction - re-enabling autocommit
 10:22:12.709 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Resetting read-only flag of JDBC Connection [com.ibm.db2.jcc.t4.b@ded33b1]
 10:22:12.709 [http-nio-8080-exec-10] DEBUG o.s.orm.jpa.JpaTransactionManager - Not closing pre-bound JPA EntityManager after transaction
-10:22:12.709 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.Task@2b027772, com.balance.life.Task@7e7a7590, com.balance.life.Task@4fbb3cf4, com.balance.life.Task@6793e11d, com.balance.life.Task@5f12b37a, com.balance.life.Task@72e99bfd]
-10:22:12.709 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.Task@2b027772, com.balance.life.Task@7e7a7590, com.balance.life.Task@4fbb3cf4, com.balance.life.Task@6793e11d, com.balance.life.Task@5f12b37a, com.balance.life.Task@72e99bfd]
-10:22:12.712 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.Task@2b027772, com.balance.life.Task@7e7a7590, com.balance.life.Task@4fbb3cf4, com.balance.life.Task@6793e11d, com.balance.life.Task@5f12b37a, com.balance.life.Task@72e99bfd]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
+10:22:12.709 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - Invoking ResponseBodyAdvice chain for body=[com.balance.life.model.Task@2b027772, com.balance.life.model.Task@7e7a7590, com.balance.life.model.Task@4fbb3cf4, com.balance.life.model.Task@6793e11d, com.balance.life.model.Task@5f12b37a, com.balance.life.model.Task@72e99bfd]
+10:22:12.709 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.ResponseBodyAdviceChain - After ResponseBodyAdvice chain body=[com.balance.life.model.Task@2b027772, com.balance.life.model.Task@7e7a7590, com.balance.life.model.Task@4fbb3cf4, com.balance.life.model.Task@6793e11d, com.balance.life.model.Task@5f12b37a, com.balance.life.model.Task@72e99bfd]
+10:22:12.712 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Written [[com.balance.life.model.Task@2b027772, com.balance.life.model.Task@7e7a7590, com.balance.life.model.Task@4fbb3cf4, com.balance.life.model.Task@6793e11d, com.balance.life.model.Task@5f12b37a, com.balance.life.model.Task@72e99bfd]] as "application/json;charset=UTF-8" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@50e42e10]
 10:22:12.712 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'appServlet': assuming HandlerAdapter completed request handling
 10:22:12.712 [http-nio-8080-exec-10] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
 10:22:12.712 [http-nio-8080-exec-10] DEBUG o.s.o.jpa.EntityManagerFactoryUtils - Closing JPA EntityManager

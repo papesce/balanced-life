@@ -52,8 +52,9 @@ define([
              // store for the dojox/mobile/EdgeToEdgeStoreList
             // var restStore = new Memory({idProperty:"label", data: static_data});
         		var restStore = new Rest({
-	    		   target: 'rest/tasks',
-	   				idProperty: "taskUID"
+	    		   target: 'rest/mobile/tasks',
+	    		   useRangeHeaders: true,
+	   			   idProperty: "id"
 	   			});
 	       	this._store = restStore;
 

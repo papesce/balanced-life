@@ -1,7 +1,6 @@
 package com.balance.life;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -14,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+
+import com.balance.life.model.Task;
+import com.balance.life.repo.TaskRepository;
 
 
 
@@ -29,9 +29,27 @@ public class TaskRestController {
 	 @Autowired
 	 TaskRepository taskRepository;
 	 
+	 
+	 @ResponseBody
+	 @RequestMapping(method=RequestMethod.GET, value = "/mobile")
+	 public List<Task> getRestTasksForMobile() {
+		 //String[] ranges = range.substring("items=".length()).split("-");
+		 //int from = Integer.valueOf(ranges[0]);
+		 //int to = Integer.valueOf(ranges[1]);
+		 List<Task> tasks = taskRepository.findAll();   
+		 //String startItem = "0";
+		 //String endItem = Integer.toString(tasks.size() -1); 
+		 //String totalItems = Integer.toString(tasks.size());
+		 //String responseSt = "items=" + startItem + "-" + endItem + "/"
+		//			+ totalItems;
+		//response.setHeader("Content-Range", responseSt);
+		 return tasks;
+	 }
+	 
+	 
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET)
-	 public List<Task> getRestTasks( @RequestHeader(value = "Range", required = true) String range,	           
+	 public List<Task> getRestTasks( @RequestHeader(value = "Range") String range,	           
 	            HttpServletResponse response) {
 		 String[] ranges = range.substring("items=".length()).split("-");
 		 int from = Integer.valueOf(ranges[0]);
