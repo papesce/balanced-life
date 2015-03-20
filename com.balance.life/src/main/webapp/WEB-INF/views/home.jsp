@@ -31,7 +31,7 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 
-    <h1 id="greeting">Welcome to Balanced Life</h1>
+    <h1 id="greeting">Welcome to Balanced Life v0.1</h1>
     
     <div id="mainContainer"></div>
       
