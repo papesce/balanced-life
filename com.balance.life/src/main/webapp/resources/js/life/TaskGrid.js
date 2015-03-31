@@ -114,8 +114,8 @@ define([
    	   var myColumns = [
    	                  { label: "Name", field: "name", editor: "text" , autoSave: true,
    	                	editOn : "dblclick", autoSelect : true },
-   	                  { label: "Tags", field: "tags", formatter: lang.hitch(this, this._formatTags),
-   	                		editor: "text" ,  set : lang.hitch(this, this._setTag) , 
+   	                  { label: "Tags", field: "tagString", formatter: lang.hitch(this, this._formatTags),
+   	                		editor: "text" , 
    	                		autoSave: true, editOn : "dblclick"}];
    	   
        this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer, Editor]))({
@@ -124,7 +124,7 @@ define([
 //       		   			allowSelectAll: true,
        		   			getBeforePut: false,
        		   			columns: myColumns,
-        	            //loadingMessage: "<span class='tt2pmpGridLoading'>Loading tasks...</span>",
+        	            loadingMessage: "<span class='tt2pmpGridLoading'>Loading tasks...</span>",
         	            noDataMessage: "No tasks found."
         	            
         	        }, this.taskGridDiv);
@@ -136,27 +136,15 @@ define([
        		   this._updateSelection(event.rows, false);
 //       		   this._updateButtons();
        	   }));
-      	  // this._grid.on("dgrid-datachange", lang.hitch(this, function (event) {
-       		   //this._updateSelection(event.rows, false);
-
-      		    //grid: The Grid instance in which the edit occurred
-      		    //cell: The cell object to which the edit applied, as reported by the grid.cell method
-      		    //oldValue: The value before the edit occurred
-      		    //value: The value after the edit occurred
-
-      	//	   alert(event);
-       	 //  }));
        	   
        },
-       _formatTags: function(tags){
+       _formatTags: function(tagString, task){
+    	   var tags = task.tags;
     	   var changedArray = array.map(tags, this._tagToString);
        	   return changedArray.join(", ");
     	   //return this._tagToString("x");
        },
-       _setTag: function(item) {
-    	   //var newTags = item.tags;
-    	   //item.tags = [newTags];  
-       },
+
        _tagToString: function(tag){
     	   return tag.name;
        },

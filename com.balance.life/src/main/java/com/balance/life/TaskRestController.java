@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.balance.life.model.Tag;
 import com.balance.life.model.Task;
+import com.balance.life.repo.TagRepository;
 import com.balance.life.repo.TaskRepository;
+
 
 
 
@@ -28,6 +32,8 @@ public class TaskRestController {
 
 	 @Autowired
 	 TaskRepository taskRepository;
+	 @Autowired
+	 TagRepository tagRepository;
 	 
 	 
 	 @ResponseBody
@@ -70,7 +76,18 @@ public class TaskRestController {
 	 }
 	  
 	 @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	 public Task update(@PathVariable("id") long id, @RequestBody @Valid Task task) {
+	 public Task update(@PathVariable("id") long id, @RequestBody @Valid Task task) { 
+		 //only one tag for now
+		 String newTagSt = task.getTagString();
+		 if (!"".equals(newTagSt)) {
+			  Tag newTag = tagRepository.findByName(newTagSt);
+			  if (newTag == null) {
+				  newTag = new Tag(newTagSt);
+				  tagRepository.save(newTag);
+			  }
+			  task.getTags().clear();
+			  task.getTags().add(newTag);
+		 }
 		 return taskRepository.save(task);
 	 }
 	  

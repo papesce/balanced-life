@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Task {
@@ -21,7 +22,8 @@ public class Task {
 	@ManyToMany
 	private List<Tag> tags;
 	
-	 
+	@Transient
+	private String tagString;
 	
 
 	protected Task() {
@@ -43,4 +45,11 @@ public class Task {
 		return tags;
 	}
 	
+    
+    
+    public String getTagString() {
+    	return tagString;
+    }
+    
+    
 }
