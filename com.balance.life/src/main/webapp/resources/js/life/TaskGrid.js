@@ -19,6 +19,8 @@ define([
     "dgrid/extensions/DijitRegistry",
     "dijit/layout/ContentPane",
     "dijit/form/ValidationTextBox",
+    "dijit/form/Select",
+    "dojo/store/JsonRest",
     "dojo/_base/array",
     "dojo/_base/lang",
     "dijit/registry",
@@ -40,6 +42,7 @@ define([
 		DijitRegistry, 
 		ContentPane,
 		ValidationTextBox,
+		Select, JsonRest,
 		array,
 		//locale,
 		lang, registry, template) {
@@ -71,6 +74,7 @@ define([
         	  this.inherited(arguments);
         	  //this._grid.set('collection', this._store);
         	  this._grid.startup();
+        	  this._filterByTagSelect.startup();
         	  this._addRowButton.startup();
         },
         _initButtons : function(arguments) {
@@ -78,12 +82,23 @@ define([
         	        label: "Insert New Task",
         	        onClick: lang.hitch(this, this._insertNewTaskClick)
         	    }, this.addRowButtonDiv);
+        	 var tagStore = new JsonRest({
+        		 target: "rest/tags/filter/",
+        		 idProperty: "tagId"
+        	 });
+        	 this._filterByTagSelect = new Select({
+        		 	store: tagStore,
+        		 	labelAttr : 'name',      		 	
+        	 	},  this.filterByTagDiv);
+        	 this._filterByTagSelect.on('change', lang.hitch(this, this._filterSelectChanged));
         	 this._removeRowButton = new Button({
      	        label: "Remove Task",
      	        onClick: lang.hitch(this, this._removeTaskClick)
      	    }, this.removeRowButtonDiv);
         },
-        
+        _filterSelectChanged : function(value) {
+        	this._grid.set('collection', this._store.filter({ tagId: value}));
+        },
         _insertNewTaskClick : function(arguments) {
         	this._store.add({
         		name: "new task"
