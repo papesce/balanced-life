@@ -18,6 +18,7 @@ define([
     "dgrid/Editor",   
     "dgrid/extensions/DijitRegistry",
     "dijit/layout/ContentPane",
+    "dijit/form/ValidationTextBox",
     "dojo/_base/array",
     "dojo/_base/lang",
     "dijit/registry",
@@ -37,7 +38,9 @@ define([
 		SimpleQuery,
 		Editor,
 		DijitRegistry, 
-		ContentPane, array,
+		ContentPane,
+		ValidationTextBox,
+		array,
 		//locale,
 		lang, registry, template) {
 
@@ -92,15 +95,15 @@ define([
         	var selection = this._getGridSelection();
         	for (var int = 0; int < selection.length; int++) {
        	     	var item = selection[int];  	
-       	     	this._store.remove(item.id);       	               		 
+       	     	this._store.remove(item.taskId);       	               		 
         	};
         },
         _initGrid : function(arguments) {
         	
    	   var restStore = new declare([Rest, SimpleQuery, Trackable])({
-    		   target: 'rest/tasks',
+    		   target: 'rest/tasks/',
     		   useRangeHeaders: true,
-   				idProperty: "id"
+   				idProperty: "taskId"
    		});
    	   var cachedStore = Cache.create(restStore, {
    		   cachingStore: new Memory()
@@ -110,7 +113,10 @@ define([
    	   
    	   var myColumns = [
    	                  { label: "Name", field: "name", editor: "text" , autoSave: true,
-   	                	editOn : "dblclick", autoSelect : true } ];
+   	                	editOn : "dblclick", autoSelect : true },
+   	                  { label: "Tags", field: "tags", formatter: lang.hitch(this, this._formatTags),
+   	                		editor: "text" ,  set : lang.hitch(this, this._setTag) , 
+   	                		autoSave: true, editOn : "dblclick"}];
    	   
        this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer, Editor]))({
        	    			collection: 	this._store,
@@ -130,6 +136,29 @@ define([
        		   this._updateSelection(event.rows, false);
 //       		   this._updateButtons();
        	   }));
+      	  // this._grid.on("dgrid-datachange", lang.hitch(this, function (event) {
+       		   //this._updateSelection(event.rows, false);
+
+      		    //grid: The Grid instance in which the edit occurred
+      		    //cell: The cell object to which the edit applied, as reported by the grid.cell method
+      		    //oldValue: The value before the edit occurred
+      		    //value: The value after the edit occurred
+
+      	//	   alert(event);
+       	 //  }));
+       	   
+       },
+       _formatTags: function(tags){
+    	   var changedArray = array.map(tags, this._tagToString);
+       	   return changedArray.join(", ");
+    	   //return this._tagToString("x");
+       },
+       _setTag: function(item) {
+    	   //var newTags = item.tags;
+    	   //item.tags = [newTags];  
+       },
+       _tagToString: function(tag){
+    	   return tag.name;
        },
         refreshGrid : function() {
         	this._grid.refresh();

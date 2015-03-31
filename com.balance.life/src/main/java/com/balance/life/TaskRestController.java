@@ -33,16 +33,7 @@ public class TaskRestController {
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET, value = "/mobile")
 	 public List<Task> getRestTasksForMobile() {
-		 //String[] ranges = range.substring("items=".length()).split("-");
-		 //int from = Integer.valueOf(ranges[0]);
-		 //int to = Integer.valueOf(ranges[1]);
 		 List<Task> tasks = taskRepository.findAll();   
-		 //String startItem = "0";
-		 //String endItem = Integer.toString(tasks.size() -1); 
-		 //String totalItems = Integer.toString(tasks.size());
-		 //String responseSt = "items=" + startItem + "-" + endItem + "/"
-		//			+ totalItems;
-		//response.setHeader("Content-Range", responseSt);
 		 return tasks;
 	 }
 	 
