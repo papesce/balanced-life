@@ -1,1 +1,8 @@
 @IMPORT url("taskGrid.css");
+
+
+.balancedTopPanel {
+	height: 30px;
+	 text-align: center;
+	 font-size: 20px;
+}

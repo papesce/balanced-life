@@ -10,7 +10,7 @@ public class Tag {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long tagId;
+	private long tagId = 0;
 	
 	private String name = "";
 

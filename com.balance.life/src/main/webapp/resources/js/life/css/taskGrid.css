@@ -1,6 +1,6 @@
 .dgrid.taskTable {
-	height: 200px;
-	
+	height: 100%;
+	width: 100%;
 }
 
 .taskTable .dgrid-row-table {
@@ -11,7 +11,12 @@
 	width: 160px;
 }
 
+.balanced_table_toolbar {
+	height: 20px;
+}
+
 
 .taskGridTable {
-	width: 600px;
+	width: 100%;
+	height: 100%;
 }

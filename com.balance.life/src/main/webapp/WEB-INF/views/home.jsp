@@ -41,14 +41,7 @@
 	<title>Home</title>
 </head>
 <body class="claro">
-
-<P>  The time on the server is ${serverTime}. </P>
-
-
-    <h1 id="greeting">Welcome to Balanced Life v0.2</h1>
-    
     <div id="mainContainer"></div>
-      
     <script src="${pageContext.request.contextPath}/resources/js/launch.js"></script>   
     
 </body>

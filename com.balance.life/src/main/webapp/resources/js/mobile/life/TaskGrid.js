@@ -54,7 +54,7 @@ define([
         		var restStore = new Rest({
 	    		   target: 'rest/mobile/tasks',
 	    		   useRangeHeaders: true,
-	   			   idProperty: "id"
+	   			   idProperty: "taskId"
 	   			});
 	       	this._store = restStore;
 
@@ -62,7 +62,7 @@ define([
                 new declare([EdgeToEdgeStoreList, LongListMixin])(
                         {
                         	store: this._store,
-                        	itemMap:{name:"label"}
+                        	itemMap:{name:"label", tagString: "rightText"}
                         	},
                         this.taskListDiv);	
 	 		
