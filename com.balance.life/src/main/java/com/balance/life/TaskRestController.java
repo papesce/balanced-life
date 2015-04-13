@@ -1,5 +1,6 @@
 package com.balance.life;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ import com.balance.life.model.Tag;
 import com.balance.life.model.Task;
 import com.balance.life.repo.TagRepository;
 import com.balance.life.repo.TaskRepository;
+import com.balance.life.util.TaskRow;
 
 
 
@@ -84,17 +86,19 @@ public class TaskRestController {
 	 }
 	  
 	 @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	 public Task update(@PathVariable("id") long id, @RequestBody @Valid Task task) { 
-		 //only one tag for now
-		 String newTagSt = task.getTagString();
-		 if (!"".equals(newTagSt)) {
-			  Tag newTag = tagRepository.findByName(newTagSt);
-			  if (newTag == null) {
-				  newTag = new Tag(newTagSt);
+	 public Task update(@PathVariable("id") long id, @RequestBody @Valid TaskRow taskRow) { 
+		 Task task = taskRow.getTask();
+		 String tagString = taskRow.getTagString();
+		 String[] newTags = tagString.split(","); 
+		 task.getTags().clear();
+		 for (int i = 0; i < newTags.length; i++) {
+			String tagSt = newTags[i].trim();
+			Tag newTag = tagRepository.findByName(tagSt);
+			if (newTag == null) {
+				  newTag = new Tag(tagSt);
 				  tagRepository.save(newTag);
-			  }
-			  task.getTags().clear();
-			  task.getTags().add(newTag);
+			}
+			task.getTags().add(newTag);
 		 }
 		 return taskRepository.save(task);
 	 }

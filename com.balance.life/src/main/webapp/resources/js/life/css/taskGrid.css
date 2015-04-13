@@ -11,12 +11,18 @@
 	width: 160px;
 }
 
-.balanced_table_toolbar {
+.balancedTableToolbar {
 	height: 20px;
+	width: 100px;
 }
 
+.balancedFilter {
+	width: 200px;
+}
 
 .taskGridTable {
 	width: 100%;
 	height: 100%;
 }
+
+

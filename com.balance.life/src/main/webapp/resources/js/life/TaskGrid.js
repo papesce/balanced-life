@@ -57,7 +57,8 @@ define([
         _grid : null,
         _gridSelection: {},
         _store: null,
-          
+        _tagStore: null,
+        
 		constructor : function() {
         	  this.inherited(arguments);
         	  this.id = "staffingPlansContentPane";
@@ -82,13 +83,18 @@ define([
         	        label: "Insert New Task",
         	        onClick: lang.hitch(this, this._insertNewTaskClick)
         	    }, this.addRowButtonDiv);
+        	 this._tagStore = new JsonRest({
+        		 target: "rest/tags",
+        		 idProperty: "tagId"
+        	 });
         	 var tagStore = new JsonRest({
         		 target: "rest/tags/filter/",
         		 idProperty: "tagId"
         	 });
         	 this._filterByTagSelect = new Select({
         		 	store: tagStore,
-        		 	labelAttr : 'name',      		 	
+        		 	labelAttr : 'name',
+        		 	style: 'width: 100%',
         	 	},  this.filterByTagDiv);
         	 this._filterByTagSelect.on('change', lang.hitch(this, this._filterSelectChanged));
         	 this._removeRowButton = new Button({
@@ -129,9 +135,13 @@ define([
    	   var myColumns = [
    	                  { label: "Name", field: "name", editor: "text" , autoSave: true,
    	                	editOn : "dblclick", autoSelect : true },
-   	                  { label: "Tags", field: "tagString", formatter: lang.hitch(this, this._formatTags),
-   	                		editor: "text" , 
-   	                		autoSave: true, editOn : "dblclick"}];
+   	                  { label: "Tags", field: "tagString", 
+   	                		editor: "text",
+							//formatter: lang.hitch(this, this._formatTags),
+							get: lang.hitch(this, this._formatTags),
+							set: lang.hitch(this, this._editTags),
+							autoSave: true, editOn : "dblclick"
+   	                			}];
    	   
        this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer, Editor]))({
        	    			collection: 	this._store,
@@ -153,13 +163,31 @@ define([
        	   }));
        	   
        },
-       _formatTags: function(tagString, task){
+       _formatTags: function(task){
     	   var tags = task.tags;
     	   var changedArray = array.map(tags, this._tagToString);
        	   return changedArray.join(", ");
-    	   //return this._tagToString("x");
+    	   //return changedArray;
        },
-
+       _editTags: function(task){
+//			TODO: warning to the user if new tags are going to be added.    	   
+//    	   var parts = task.tagString.split(',');
+//    	   for (var int = 0; int < parts.length; int++) {
+//    		   var tagString = parts[int];
+//    		   this._analyzeTags(task.tags, tagString, function(tag
+//    				   ){
+//    			   
+//    		   });
+//    		   newTags.push(tag);
+//    		   console.log(tagString);
+//    	   }
+//    	   delete task.tagString;
+       },
+//       _searchTag: function(tags, tagName) {
+//    	   this._tagStore.query("?tagName=" + tagName.trim()).then(function(tasks){
+//    		   
+//    	   });
+//       },
        _tagToString: function(tag){
     	   return tag.name;
        },

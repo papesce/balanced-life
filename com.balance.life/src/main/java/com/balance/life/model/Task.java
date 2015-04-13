@@ -1,6 +1,9 @@
 package com.balance.life.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javassist.expr.NewArray;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,10 +23,7 @@ public class Task {
 	private String name = "";
 	
 	@ManyToMany
-	private List<Tag> tags;
-	
-	@Transient
-	private String tagString;
+	private List<Tag> tags = new ArrayList<Tag>();
 	
 
 	protected Task() {
@@ -44,12 +44,19 @@ public class Task {
     public List<Tag> getTags() {
 		return tags;
 	}
+
+	public void setId(long taskId) {
+		this.taskId = taskId;
+		
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+		
+	}
 	
     
     
-    public String getTagString() {
-    	return tagString;
-    }
-    
+   
     
 }
