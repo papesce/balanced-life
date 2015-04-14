@@ -57,6 +57,7 @@ define([
         _grid : null,
         _gridSelection: {},
         _store: null,
+        _doneStore: null,
         _tagStore: null,
         
 		constructor : function() {
@@ -87,12 +88,12 @@ define([
         		 target: "rest/tags",
         		 idProperty: "tagId"
         	 });
-        	 var tagStore = new JsonRest({
+        	 var filterTagStore = new JsonRest({
         		 target: "rest/tags/filter/",
         		 idProperty: "tagId"
         	 });
         	 this._filterByTagSelect = new Select({
-        		 	store: tagStore,
+        		 	store: filterTagStore,
         		 	labelAttr : 'name',
         		 	style: 'width: 100%',
         	 	},  this.filterByTagDiv);
@@ -101,6 +102,11 @@ define([
      	        label: "Remove Task",
      	        onClick: lang.hitch(this, this._removeTaskClick)
      	    }, this.removeRowButtonDiv);
+        	 this._markAsDoneButton = new Button({
+      	        label: "Mark as Done",
+      	        onClick: lang.hitch(this, this._markAsDoneTaskClick)
+      	    }, this.markAsDoneButtonDiv);
+
         },
         _filterSelectChanged : function(value) {
         	this._grid.set('collection', this._store.filter({ tagId: value}));
@@ -119,20 +125,33 @@ define([
        	     	this._store.remove(item.taskId);       	               		 
         	};
         },
+        _markAsDoneTaskClick : function(arguments) {
+        	var selection = this._getGridSelection();
+        	for (var int = 0; int < selection.length; int++) {
+       	     	var item = selection[int];  	
+       	     	this._doneStore.put(item);
+       	     	this._store.remove(item.taskId);
+        	};
+        },
         _initGrid : function(arguments) {
         	
-   	   var restStore = new declare([Rest, SimpleQuery, Trackable])({
+        	this._doneStore = new JsonRest({
+       		 	target: "rest/tasks/markDone/",
+       		 	idProperty: "taskId"
+       	 	});        	
+   	   
+        	this._restStore = new declare([Rest, SimpleQuery, Trackable])({
     		   target: 'rest/tasks/',
     		   useRangeHeaders: true,
    				idProperty: "taskId"
-   		});
-   	   var cachedStore = Cache.create(restStore, {
-   		   cachingStore: new Memory()
-   	   });
-   	   //this._store = restStore;
-   	   this._store = cachedStore;
+        	});
    	   
-   	   var myColumns = [
+        	var cachedStore = Cache.create(this._restStore, {
+        		cachingStore: new Memory()
+        	});
+        	this._store = cachedStore;
+   	   
+        	var myColumns = [
    	                  { label: "Name", field: "name", editor: "text" , autoSave: true,
    	                	editOn : "dblclick", autoSelect : true },
    	                  { label: "Tags", field: "tagString", 
@@ -141,7 +160,10 @@ define([
 							get: lang.hitch(this, this._formatTags),
 							set: lang.hitch(this, this._editTags),
 							autoSave: true, editOn : "dblclick"
-   	                			}];
+   	                			},
+   	   					
+   	   				];
+   	   this._addPartitions(myColumns);
    	   
        this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer, Editor]))({
        	    			collection: 	this._store,
@@ -188,6 +210,34 @@ define([
 //    		   
 //    	   });
 //       },
+       _addPartitions: function(columns){
+    	   //asume: partitions = { Partition{name: temporal, tags: {today, tomorrow}}} 
+
+    	   var partitionColumn = {
+    		label: 'Temporal',
+    		field: 'temporal',
+    		get: function(task){
+    			//intersection between tags and 
+    			for (var int = 0; int < task.tags.length; int++) {
+					var tag = task.tags[int];
+					if (tag.name == "tomorrow") 
+						{return "tomorrow";}
+					else if (tag.name == "today")
+						{return "today";}
+				};
+    			return "";
+    		},
+    		editor: Select,
+    		editorArgs: {
+    			options: [{value: "", label: ""},
+    			          {value: "today", label: "today"}, {value: "tomorrow", label: "tomorrow"} ],
+    			style: { width: "99%" },
+    		},
+    	   editOn : "dblclick"
+    	   };
+    	   
+    	   columns.push(partitionColumn);
+       },
        _tagToString: function(tag){
     	   return tag.name;
        },

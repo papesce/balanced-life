@@ -1,6 +1,7 @@
 package com.balance.life;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,9 +21,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.balance.life.model.DoneTag;
+import com.balance.life.model.DoneTask;
 import com.balance.life.model.Tag;
 import com.balance.life.model.Task;
+import com.balance.life.model.TaskAudit;
+import com.balance.life.repo.DoneTagRepository;
+import com.balance.life.repo.DoneTaskRepository;
 import com.balance.life.repo.TagRepository;
+import com.balance.life.repo.TaskAuditRepository;
 import com.balance.life.repo.TaskRepository;
 import com.balance.life.util.TaskRow;
 
@@ -35,6 +42,10 @@ public class TaskRestController {
 
 	 @Autowired
 	 TaskRepository taskRepository;
+	 @Autowired
+	 DoneTaskRepository doneTaskRepository;
+	 @Autowired
+	 DoneTagRepository doneTagRepository;
 	 @Autowired
 	 TagRepository tagRepository;
 	 
@@ -89,16 +100,18 @@ public class TaskRestController {
 	 public Task update(@PathVariable("id") long id, @RequestBody @Valid TaskRow taskRow) { 
 		 Task task = taskRow.getTask();
 		 String tagString = taskRow.getTagString();
-		 String[] newTags = tagString.split(","); 
-		 task.getTags().clear();
-		 for (int i = 0; i < newTags.length; i++) {
-			String tagSt = newTags[i].trim();
-			Tag newTag = tagRepository.findByName(tagSt);
-			if (newTag == null) {
-				  newTag = new Tag(tagSt);
-				  tagRepository.save(newTag);
-			}
-			task.getTags().add(newTag);
+		 if (!"".equals(tagString)) {
+			 String[] newTags = tagString.split(",");
+			 task.getTags().clear();
+			 for (int i = 0; i < newTags.length; i++) {
+				 String tagSt = newTags[i].trim();
+				 Tag newTag = tagRepository.findByName(tagSt);
+				 if (newTag == null) {
+					 newTag = new Tag(tagSt);
+					 tagRepository.save(newTag);
+				 }
+				 task.getTags().add(newTag);
+			 }
 		 }
 		 return taskRepository.save(task);
 	 }
@@ -108,4 +121,24 @@ public class TaskRestController {
 		 this.taskRepository.delete(id);
 		 return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
 	 }
+
+	 @RequestMapping(value="/markDone/{id}", method=RequestMethod.PUT)
+	 public Task update(@PathVariable("id") long id, @RequestBody @Valid Task task) {
+		 DoneTask doneTask = new DoneTask(task.getName());
+		 for (Tag tag : task.getTags()) {
+			 String tagName = tag.getName();
+			DoneTag doneTag = doneTagRepository.findByName(tagName);
+			 if (doneTag == null) {
+				 doneTag = new DoneTag(tagName);
+				 doneTagRepository.save(doneTag);
+			 }
+			 doneTask.getTags().add(doneTag);
+		 }
+		 doneTask.setTimestamp(Calendar.getInstance().getTime());
+		 doneTaskRepository.save(doneTask);
+		 //taskRepository.delete(task);
+		 return task;
+	 }	 
+
+
 }
