@@ -1,8 +1,8 @@
-define([ "life/TaskGrid",
+define([ "life/CenterPane",
          "dijit/layout/StackContainer",
          "dijit/layout/BorderContainer",
          "dijit/layout/ContentPane",
-         ], function(TaskGrid, StackContainer, BorderContainer, ContentPane){
+         ], function(CenterPane, StackContainer, BorderContainer, ContentPane){
 	_mainContainer : null; 
 	_topContentPane: null;
 	_centerContentPane: null;
@@ -23,7 +23,7 @@ define([ "life/TaskGrid",
 		this._topContentPane= new ContentPane({
 			region: "top",
 			"class" : "balancedTopPanel",
-			content: "Balanced Life v0.3"
+			content: "Balanced Life v0.4"
 			});
 		this._mainContainer.addChild(this._topContentPane);
 	},
@@ -31,8 +31,8 @@ define([ "life/TaskGrid",
 		this._centerContentPane = new ContentPane({
 			region: "center",
 		});
-		var taskGrid = new TaskGrid();
-		this._centerContentPane.addChild(taskGrid);
+		var centerPane = new CenterPane();
+		this._centerContentPane.addChild(centerPane);
 		this._mainContainer.addChild(this._centerContentPane);
 	};
 	

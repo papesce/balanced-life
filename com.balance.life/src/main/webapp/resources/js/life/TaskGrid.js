@@ -62,7 +62,7 @@ define([
         
 		constructor : function() {
         	  this.inherited(arguments);
-        	  this.id = "staffingPlansContentPane";
+        	  this.id = "balancedLifeTaskGrid";
         },
         
         postCreate: function(){

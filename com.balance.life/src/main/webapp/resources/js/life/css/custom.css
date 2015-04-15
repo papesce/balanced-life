@@ -1,4 +1,6 @@
 @IMPORT url("taskGrid.css");
+@IMPORT url("centerPane.css");
+@IMPORT url("taskHistory.css");
 
 
 .balancedTopPanel {
