@@ -1,7 +1,7 @@
 @IMPORT url("taskGrid.css");
 @IMPORT url("centerPane.css");
 @IMPORT url("taskHistory.css");
-
+@IMPORT url("goalGrid.css");
 
 .balancedTopPanel {
 	height: 30px;

@@ -83,7 +83,7 @@ define([
         	 this._addRowButton = new Button({
         	        label: "Insert New Task",
         	        onClick: lang.hitch(this, this._insertNewTaskClick)
-        	    }, this.addRowButtonDiv);
+        	    }, this.addTaskRowButtonDiv);
         	 this._tagStore = new JsonRest({
         		 target: "rest/tags",
         		 idProperty: "tagId"

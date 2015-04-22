@@ -8,6 +8,7 @@ define([
         "dijit/layout/ContentPane",
         "life/TaskGrid",
         "life/HistoryGrid",
+        "life/GoalGrid",
         "dojo/text!./templates/centerPane.html"
 ], function(declare, _WidgetBase,
 		_AttachMixin,
@@ -15,7 +16,7 @@ define([
 		_WidgetsInTemplateMixin,
 		TabContainer,
 		ContentPane,
-		TaskGrid, HistoryGrid,
+		TaskGrid, HistoryGrid, GoalGrid,
 		template) {
 	
 	return declare([_WidgetBase, _AttachMixin, _TemplatedMixin, _WidgetsInTemplateMixin
@@ -37,8 +38,9 @@ define([
 
 			    var goalsPane = new ContentPane({
 			         title: "Goals",
-			         content: "goals here"
 			    });
+			    var goalGrid = new GoalGrid();
+			    goalsPane.set("content", goalGrid);
 			    this._tabContainer.addChild(goalsPane);
 
 			    var taskPane = new ContentPane({
