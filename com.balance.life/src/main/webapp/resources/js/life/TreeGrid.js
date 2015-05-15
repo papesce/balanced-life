@@ -11,13 +11,15 @@ define([
     "dgrid/extensions/DijitRegistry",
     "dgrid/extensions/ColumnResizer", 
     "dgrid/Editor",  
+    "dgrid/Tree",
     "dstore/Rest",
+    "dstore/Tree",
     "dstore/SimpleQuery",
     'dstore/Trackable',
     "dstore/Cache",
     "dstore/Memory",
     "dojo/_base/lang",
-    "dojo/text!./templates/goalGrid.html"
+    "dojo/text!./templates/treeGrid.html"
 ], function(declare, _WidgetBase, 
 		_AttachMixin,
 		_TemplatedMixin,
@@ -28,9 +30,10 @@ define([
 		Selection,
 		DijitRegistry,
 		ColumnResizer,
-		Editor,
+		Editor, Tree, 
 		Rest,
 		SimpleQuery,
+		DTree,
 		Trackable,
 		Cache,
 		Memory,
@@ -47,7 +50,7 @@ define([
         
 		constructor : function() {
         	  this.inherited(arguments);
-        	  this.id = "balancedLifeGoalGrid";
+        	  this.id = "balancedLifeTreeGrid";
         },
         
         postCreate: function(){
@@ -57,10 +60,10 @@ define([
 			this._initGrid(arguments);
         },
         _initButtons : function(arguments) {
-       	 this._addRowButton = new Button({
-       	        label: "Insert New Goal",
-       	        onClick: lang.hitch(this, this._insertNewGoalClick)
-       	    }, this.addGoalRowButtonDiv);
+//       	 this._addRowButton = new Button({
+//       	        label: "Insert New Goal",
+//       	        onClick: lang.hitch(this, this._insertNewGoalClick)
+//       	    }, this.addGoalRowButtonDiv);
         },
         startup: function() {
         	  this.inherited(arguments);
@@ -69,10 +72,13 @@ define([
        
         _initGrid : function(arguments) {
         	
-        	this._restStore = new declare([Rest, SimpleQuery, Trackable])({
-     		   target: 'rest/goals/',
-     		   useRangeHeaders: true,
-    				idProperty: "goalId"
+        	this._restStore = new declare([Rest, SimpleQuery, Trackable, DTree])({
+     		   target: 'rest/tree/',
+//     			mayHaveChildren: function(parent){
+//    				return true;
+//   			},
+     			useRangeHeaders: true,
+    			idProperty: "itemId"
          	});
     	   
          	var cachedStore = Cache.create(this._restStore, {
@@ -81,7 +87,7 @@ define([
          	this._store = cachedStore;
         	
          	var myColumns = [
-          	                  { label: "Name", field: "name"
+          	                  {renderExpando: true, label: "Name", field: "name"
           	                	  , editor: "text" , autoSave: true,
           	                	editOn : "dblclick", autoSelect : true 
           	                	},
@@ -95,21 +101,22 @@ define([
           	   					
           	   				];
         	
-        	 this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer, Editor]))({
+        	 this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer,
+        	                            Editor, Tree]))({
 	    			collection: 	this._store,
 		   			selectionMode: "toggle",    
 //		   			allowSelectAll: true,
 		   			getBeforePut: false,
 		   			columns: myColumns,
- 	            loadingMessage: "<span class='tt2pmpGridLoading'>Loading goals...</span>",
- 	            noDataMessage: "No goals found."
+ 	            loadingMessage: "<span class='tt2pmpGridLoading'>Loading items...</span>",
+ 	            noDataMessage: "No items found."
  	            
- 	        }, this.balancedGoalGridDiv);
+ 	        }, this.balancedTreeGridDiv);
         	
         },
         _insertNewGoalClick : function(arguments) {
         	this._store.add({
-        		name: "new goal"
+        		name: "new item"
         		})//.then(lang.hitch(this, this.refreshGrid));
         		//.then(function(task){
         		//	this._store.notify(task, task.id)})

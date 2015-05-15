@@ -7,7 +7,7 @@ define([
          "dojox/mobile/LongListMixin",
          "dojo/store/Memory",
          "dojo/store/JsonRest",
-         "dojo/text!./templates/taskGrid.html"
+         "dojo/text!./templates/itemGrid.html"
          ], function(declare, _WidgetBase, 
         			_AttachMixin,
         			_TemplatedMixin, 
@@ -23,7 +23,7 @@ define([
 	    
 		constructor : function() {
       	  this.inherited(arguments);
-      	  this.id = "mobileTaskContentPane";
+      	  this.id = "mobileItemContentPane";
       },
 
 		
@@ -52,9 +52,9 @@ define([
              // store for the dojox/mobile/EdgeToEdgeStoreList
             // var restStore = new Memory({idProperty:"label", data: static_data});
         		var restStore = new Rest({
-	    		   target: 'rest/mobile/tasks',
+	    		   target: 'rest/items/mobile',
 	    		   useRangeHeaders: true,
-	   			   idProperty: "taskId"
+	   			   idProperty: "itemId"
 	   			});
 	       	this._store = restStore;
 
@@ -64,7 +64,7 @@ define([
                         	store: this._store,
                         	itemMap:{name:"label", tagString: "rightText"}
                         	},
-                        this.taskListDiv);	
+                        this.itemListDiv);	
 	 		
 	 	}
         

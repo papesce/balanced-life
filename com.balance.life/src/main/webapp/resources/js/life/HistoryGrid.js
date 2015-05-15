@@ -9,7 +9,9 @@ define([
     "dgrid/Selection",
     "dgrid/extensions/DijitRegistry",
     "dgrid/extensions/ColumnResizer", 
-    "dgrid/Editor",  
+    "dgrid/Editor",
+    "dojo/date/locale",
+    "dojo/_base/lang",
     "dstore/Rest",
     "dstore/SimpleQuery",
     'dstore/Trackable',
@@ -26,6 +28,7 @@ define([
 		DijitRegistry,
 		ColumnResizer,
 		Editor,
+		locale, lang,
 		Rest,
 		SimpleQuery,
 		Trackable,
@@ -61,9 +64,9 @@ define([
         _initGrid : function(arguments) {
         	
         	this._restStore = new declare([Rest, SimpleQuery, Trackable])({
-     		   target: 'rest/taskHistory/',
+     		   target: 'rest/history/',
      		   useRangeHeaders: true,
-    				idProperty: "taskId"
+    				idProperty: "itemId"
          	});
     	   
          	var cachedStore = Cache.create(this._restStore, {
@@ -75,7 +78,10 @@ define([
           	                  { label: "Name", field: "name"
           	                	  //, editor: "text" , autoSave: true,
           	                	//editOn : "dblclick", autoSelect : true 
-          	                	},
+          	                	},{
+          	                		label: "Time", field: "timestamp",
+          	                		formatter: lang.hitch(this, this._formatTimestamp)
+          	                	} 
           	                  //{ label: "Tags", field: "tagString", 
           	                //		editor: "text",
        							//formatter: lang.hitch(this, this._formatTags),
@@ -97,6 +103,12 @@ define([
  	            
  	        }, this.balancedHistoryGridDiv);
         	
+        },
+        _formatTimestamp: function(dateValue) {
+        	return locale.format(new Date(dateValue),{
+        	    selector: "date",
+        	    formatLength: "short"
+        	  });
         },
         resize: function(){
        	 this.inherited(arguments);

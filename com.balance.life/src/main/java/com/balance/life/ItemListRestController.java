@@ -21,29 +21,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.balance.life.model.DoneItem;
 import com.balance.life.model.DoneTag;
-import com.balance.life.model.DoneTask;
 import com.balance.life.model.Tag;
-import com.balance.life.model.Task;
-import com.balance.life.model.TaskAudit;
+import com.balance.life.model.Item;
 import com.balance.life.repo.DoneTagRepository;
-import com.balance.life.repo.DoneTaskRepository;
+import com.balance.life.repo.DoneItemRepository;
 import com.balance.life.repo.TagRepository;
-import com.balance.life.repo.TaskAuditRepository;
-import com.balance.life.repo.TaskRepository;
-import com.balance.life.util.TaskRow;
+import com.balance.life.repo.ItemRepository;
+import com.balance.life.util.ItemRow;
 
 
 
 
 @RestController
-@RequestMapping("/rest/tasks")
-public class TaskRestController {
+@RequestMapping("/rest/items")
+public class ItemListRestController {
 
 	 @Autowired
-	 TaskRepository taskRepository;
+	 ItemRepository itemRepository;
 	 @Autowired
-	 DoneTaskRepository doneTaskRepository;
+	 DoneItemRepository doneItemRepository;
 	 @Autowired
 	 DoneTagRepository doneTagRepository;
 	 @Autowired
@@ -52,26 +50,26 @@ public class TaskRestController {
 	 
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET, value = "/mobile")
-	 public List<Task> getRestTasksForMobile() {
-		 List<Task> tasks = taskRepository.findAll();   
+	 public List<Item> getRestTasksForMobile() {
+		 List<Item> tasks = itemRepository.findAll();   
 		 return tasks;
 	 }
 	 
 	 
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET)
-	 public List<Task> getRestTasks( 
+	 public List<Item> getRestTasks( 
 			 @RequestHeader(value = "Range") String range,
 			 @RequestParam(value = "tagId", required = false) Long tagId,
 	            HttpServletResponse response) {
 		 String[] ranges = range.substring("items=".length()).split("-");
 		 int from = Integer.valueOf(ranges[0]);
 		 int to = Integer.valueOf(ranges[1]);
-		 List<Task> tasks;
+		 List<Item> tasks;
 		 if (tagId == null || tagId.equals((long)0)) {
-			 tasks = taskRepository.findAll();   
+			 tasks = itemRepository.findAll();   
 		 } else {
-			 tasks = taskRepository.findAllByTagsTagId(tagId);
+			 tasks = itemRepository.findAllByTagsTagId(tagId);
 		 }
 		 String startItem = "0";
 		 String endItem = Integer.toString(tasks.size() -1); 
@@ -86,19 +84,19 @@ public class TaskRestController {
 	 
 	 @RequestMapping(method=RequestMethod.POST)
 	 @ResponseStatus(HttpStatus.CREATED)
-	 public Task create(@RequestBody @Valid Task task) {
-		 return this.taskRepository.save(task);
+	 public Item create(@RequestBody @Valid Item task) {
+		 return this.itemRepository.save(task);
 	 }
 	 
 	 
 	 @RequestMapping(value="/{id}", method=RequestMethod.GET)
-	 public Task get(@PathVariable("id") long id) {
-		 return this.taskRepository.findOne(id);
+	 public Item get(@PathVariable("id") long id) {
+		 return this.itemRepository.findOne(id);
 	 }
 	  
 	 @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	 public Task update(@PathVariable("id") long id, @RequestBody @Valid TaskRow taskRow) { 
-		 Task task = taskRow.getTask();
+	 public Item update(@PathVariable("id") long id, @RequestBody @Valid ItemRow taskRow) { 
+		 Item task = taskRow.getTask();
 		 String tagString = taskRow.getTagString();
 		 if (!"".equals(tagString)) {
 			 String[] newTags = tagString.split(",");
@@ -113,18 +111,18 @@ public class TaskRestController {
 				 task.getTags().add(newTag);
 			 }
 		 }
-		 return taskRepository.save(task);
+		 return itemRepository.save(task);
 	 }
 	  
 	 @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	 public ResponseEntity<Boolean> delete(@PathVariable("id") long id) {
-		 this.taskRepository.delete(id);
+		 this.itemRepository.delete(id);
 		 return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
 	 }
 
 	 @RequestMapping(value="/markDone/{id}", method=RequestMethod.PUT)
-	 public Task update(@PathVariable("id") long id, @RequestBody @Valid Task task) {
-		 DoneTask doneTask = new DoneTask(task.getName());
+	 public Item update(@PathVariable("id") long id, @RequestBody @Valid Item task) {
+		 DoneItem doneTask = new DoneItem(task.getName());
 		 for (Tag tag : task.getTags()) {
 			 String tagName = tag.getName();
 			DoneTag doneTag = doneTagRepository.findByName(tagName);
@@ -135,7 +133,7 @@ public class TaskRestController {
 			 doneTask.getTags().add(doneTag);
 		 }
 		 doneTask.setTimestamp(Calendar.getInstance().getTime());
-		 doneTaskRepository.save(doneTask);
+		 doneItemRepository.save(doneTask);
 		 //taskRepository.delete(task);
 		 return task;
 	 }	 

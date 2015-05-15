@@ -1,5 +1,8 @@
 package com.balance.life.model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +17,7 @@ public class DoneTag{
 	private long tagId = 0;
 	
 	private String name = "";
+
 
 	
 	protected DoneTag() {
@@ -31,5 +35,7 @@ public class DoneTag{
 	public String getName() {
 		return name;
 	}
+
+
 	
 }

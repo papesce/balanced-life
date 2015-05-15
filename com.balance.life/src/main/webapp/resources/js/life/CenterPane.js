@@ -6,9 +6,9 @@ define([
         "dijit/_WidgetsInTemplateMixin",
         "dijit/layout/TabContainer",
         "dijit/layout/ContentPane",
-        "life/TaskGrid",
+        "life/ListGrid",
         "life/HistoryGrid",
-        "life/GoalGrid",
+        "life/TreeGrid",
         "dojo/text!./templates/centerPane.html"
 ], function(declare, _WidgetBase,
 		_AttachMixin,
@@ -16,7 +16,7 @@ define([
 		_WidgetsInTemplateMixin,
 		TabContainer,
 		ContentPane,
-		TaskGrid, HistoryGrid, GoalGrid,
+		ListGrid, HistoryGrid, TreeGrid,
 		template) {
 	
 	return declare([_WidgetBase, _AttachMixin, _TemplatedMixin, _WidgetsInTemplateMixin
@@ -36,26 +36,30 @@ define([
 			        style: "height: 100%; width: 100%;"
 			    }, this.balancedCenterTabContainerDiv);
 
-			    var goalsPane = new ContentPane({
-			         title: "Goals",
-			    });
-			    var goalGrid = new GoalGrid();
-			    goalsPane.set("content", goalGrid);
-			    this._tabContainer.addChild(goalsPane);
 
-			    var taskPane = new ContentPane({
-			    	title: "Tasks",
+			    var listPane = new ContentPane({
+			    	title: "List View",
 			    });
-			    var taskGrid = new TaskGrid();
-			    taskPane.set("content", taskGrid);
-			    this._tabContainer.addChild(taskPane);
+			    var listGrid = new ListGrid();
+			    listPane.set("content", listGrid);
+			    this._tabContainer.addChild(listPane);
 
+			    var treePane = new ContentPane({
+			         title: "Tree View",
+			    });
+			    var treeGrid = new TreeGrid();
+			    treePane.set("content", treeGrid);
+			    this._tabContainer.addChild(treePane);
+
+			    
 			    var historyPane = new ContentPane({
 			         title: "History",
 			    });
 			    var historyGrid = new HistoryGrid();
 			    historyPane.set("content", historyGrid);
 			    this._tabContainer.addChild(historyPane);
+			    
+
 
       },
       startup: function() {

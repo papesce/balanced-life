@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.balance.life.model.DoneTask;
-import com.balance.life.repo.DoneTaskRepository;
+import com.balance.life.model.DoneItem;
+import com.balance.life.repo.DoneItemRepository;
 
 @RestController
-@RequestMapping("/rest/taskHistory")
-public class TaskHistoryRestController {
+@RequestMapping("/rest/history")
+public class HistoryRestController {
 
 	 @Autowired
-	 DoneTaskRepository doneTaskRepository;
+	 DoneItemRepository doneTaskRepository;
 	
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET)
-	 public List<DoneTask> getRestTaskHistory( 
+	 public List<DoneItem> getRestTaskHistory( 
 			 @RequestHeader(value = "Range") String range,
 			 HttpServletResponse response)  {
-		 List<DoneTask> tasks = doneTaskRepository.findAll();   
+		 List<DoneItem> tasks = doneTaskRepository.findAll();   
 		 String startItem = "0";
 		 String endItem = Integer.toString(tasks.size() -1); 
 		 String totalItems = Integer.toString(tasks.size());

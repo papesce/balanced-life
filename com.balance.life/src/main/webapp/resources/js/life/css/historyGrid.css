@@ -1,0 +1,9 @@
+.balancedHistoryTable .dgrid-row-table {
+	height: auto;
+}
+
+
+.dgrid.balancedHistoryTable {
+	height: 100%;
+	width: 100%;
+}

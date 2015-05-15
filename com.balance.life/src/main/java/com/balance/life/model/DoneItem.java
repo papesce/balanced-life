@@ -1,6 +1,7 @@
 package com.balance.life.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,46 +11,53 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Task {
+public class DoneItem {
+
+	private Date timestamp;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long taskId;
+	private long itemId;
 	
 	
 	private String name = "";
 	
 	@ManyToMany
-	private List<Tag> tags = new ArrayList<Tag>();
+	private List<DoneTag> tags = new ArrayList<DoneTag>();
 	
 
-	protected Task() {
+	protected DoneItem() {
 	}
 	
-	public Task(String name) {
+	public DoneItem(String name) {
 		this.name= name;
 	}
 	 
-    public long getTaskId() {
-        return taskId;
+    public long getItemId() {
+        return itemId;
     }
 
     public String getName() {
 	        return name;
 	}
     
-    public List<Tag> getTags() {
+    public List<DoneTag> getTags() {
 		return tags;
 	}
 
-	public void setId(long taskId) {
-		this.taskId = taskId;
+	public void setId(long itemId) {
+		this.itemId = itemId;
 		
 	}
 
 	
-    
-    
-   
-    
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	
 }

@@ -1,13 +1,13 @@
-.dgrid.taskTable {
+.dgrid.listTable {
 	height: 100%;
 	width: 100%;
 }
 
-.taskTable .dgrid-row-table {
+.listTable .dgrid-row-table {
 	height: auto;
 }
 
-.taskTable .field-name {
+.listTable .field-name {
 	width: 160px;
 }
 
@@ -20,7 +20,7 @@
 	width: 200px;
 }
 
-.taskGridTable {
+.listGridTable {
 	width: 100%;
 	height: 100%;
 }

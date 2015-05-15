@@ -6,6 +6,7 @@ define([
     "dijit/_WidgetsInTemplateMixin",
     "dijit/form/Button",
     "dgrid/Grid",
+    "dgrid/Tree",
     "dgrid/OnDemandGrid",
     "dgrid/Selection",
     "dgrid/Keyboard",
@@ -24,13 +25,13 @@ define([
     "dojo/_base/array",
     "dojo/_base/lang",
     "dijit/registry",
-    "dojo/text!./templates/taskGrid.html"
+    "dojo/text!./templates/listGrid.html"
 ], function(declare, _WidgetBase, 
 		_AttachMixin,
 		_TemplatedMixin,
 		_WidgetsInTemplateMixin, 
 		Button,
-		Grid, 
+		Grid, Tree,
 		OnDemandGrid, Selection, 
 		Keyboard, ColumnResizer, 
 		Cache,
@@ -62,7 +63,7 @@ define([
         
 		constructor : function() {
         	  this.inherited(arguments);
-        	  this.id = "balancedLifeTaskGrid";
+        	  this.id = "balancedLifeListGrid";
         },
         
         postCreate: function(){
@@ -81,9 +82,9 @@ define([
         },
         _initButtons : function(arguments) {
         	 this._addRowButton = new Button({
-        	        label: "Insert New Task",
+        	        label: "Insert New",
         	        onClick: lang.hitch(this, this._insertNewTaskClick)
-        	    }, this.addTaskRowButtonDiv);
+        	    }, this.addRowInListButtonDiv);
         	 this._tagStore = new JsonRest({
         		 target: "rest/tags",
         		 idProperty: "tagId"
@@ -99,7 +100,7 @@ define([
         	 	},  this.filterByTagDiv);
         	 this._filterByTagSelect.on('change', lang.hitch(this, this._filterSelectChanged));
         	 this._removeRowButton = new Button({
-     	        label: "Remove Task",
+     	        label: "Remove Selected",
      	        onClick: lang.hitch(this, this._removeTaskClick)
      	    }, this.removeRowButtonDiv);
         	 this._markAsDoneButton = new Button({
@@ -113,7 +114,7 @@ define([
         },
         _insertNewTaskClick : function(arguments) {
         	this._store.add({
-        		name: "new task"
+        		name: "new item"
         		})//.then(lang.hitch(this, this.refreshGrid));
         		//.then(function(task){
         		//	this._store.notify(task, task.id)})
@@ -122,7 +123,7 @@ define([
         	var selection = this._getGridSelection();
         	for (var int = 0; int < selection.length; int++) {
        	     	var item = selection[int];  	
-       	     	this._store.remove(item.taskId);       	               		 
+       	     	this._store.remove(item.itemId);       	               		 
         	};
         },
         _markAsDoneTaskClick : function(arguments) {
@@ -130,20 +131,20 @@ define([
         	for (var int = 0; int < selection.length; int++) {
        	     	var item = selection[int];  	
        	     	this._doneStore.put(item);
-       	     	this._store.remove(item.taskId);
+       	     	this._store.remove(item.itemId);
         	};
         },
         _initGrid : function(arguments) {
         	
         	this._doneStore = new JsonRest({
-       		 	target: "rest/tasks/markDone/",
-       		 	idProperty: "taskId"
+       		 	target: "rest/items/markDone/",
+       		 	idProperty: "itemId"
        	 	});        	
    	   
         	this._restStore = new declare([Rest, SimpleQuery, Trackable])({
-    		   target: 'rest/tasks/',
+    		   target: 'rest/items/',
     		   useRangeHeaders: true,
-   				idProperty: "taskId"
+   				idProperty: "itemId"
         	});
    	   
         	var cachedStore = Cache.create(this._restStore, {
@@ -161,11 +162,14 @@ define([
 							set: lang.hitch(this, this._editTags),
 							autoSave: true, editOn : "dblclick"
    	                			},
+   	                		{label : " Associations", field:"associations", autosave: true,
+   	                				editOn: "dblclick", autoselect : true}			
+   	                		
    	   					
    	   				];
    	   this._addPartitions(myColumns);
    	   
-       this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer, Editor]))({
+       this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer,  Editor]))({
        	    			collection: 	this._store,
        		   			selectionMode: "toggle",    
 //       		   			allowSelectAll: true,
@@ -174,7 +178,7 @@ define([
         	            loadingMessage: "<span class='tt2pmpGridLoading'>Loading tasks...</span>",
         	            noDataMessage: "No tasks found."
         	            
-        	        }, this.taskGridDiv);
+        	        }, this.listGridDiv);
       	   this._grid.on("dgrid-select", lang.hitch(this, function (event) {
        		   this._updateSelection(event.rows, true);
 //       		   this._updateButtons();
@@ -214,7 +218,7 @@ define([
     	   //asume: partitions = { Partition{name: temporal, tags: {today, tomorrow}}} 
 
     	   var partitionColumn = {
-    		label: 'Temporal',
+    		label: 'When',
     		field: 'temporal',
     		get: function(task){
     			//intersection between tags and 

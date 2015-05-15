@@ -16,18 +16,18 @@ define([ "life/CenterPane",
 	        style: "height: 100%; width: 100%;"
 	    }, "mainContainer");
 		_addTitleBar();
-		_addTaskGrid();
+		_addCenterPane();
 	    this._mainContainer.startup();
 	};
 	_addTitleBar = function() {
 		this._topContentPane= new ContentPane({
 			region: "top",
 			"class" : "balancedTopPanel",
-			content: "Balanced Life v0.4"
+			content: "Balanced Life v0.5"
 			});
 		this._mainContainer.addChild(this._topContentPane);
 	},
-	_addTaskGrid = function() {
+	_addCenterPane = function() {
 		this._centerContentPane = new ContentPane({
 			region: "center",
 		});

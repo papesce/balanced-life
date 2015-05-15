@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.balance.life.model.Task;
-import com.balance.life.repo.TaskRepository;
+import com.balance.life.model.Item;
+import com.balance.life.repo.ItemRepository;
 
 
 
@@ -27,16 +27,16 @@ import com.balance.life.repo.TaskRepository;
 public class TaskRestMobileController {
 
 	 @Autowired
-	 TaskRepository taskRepository;
+	 ItemRepository taskRepository;
 	 
 	 
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET)
-	 public List<Task> getRestTasksForMobile() {
+	 public List<Item> getRestTasksForMobile() {
 		 //String[] ranges = range.substring("items=".length()).split("-");
 		 //int from = Integer.valueOf(ranges[0]);
 		 //int to = Integer.valueOf(ranges[1]);
-		 List<Task> tasks = taskRepository.findAll();   
+		 List<Item> tasks = taskRepository.findAll();   
 		 //String startItem = "0";
 		 //String endItem = Integer.toString(tasks.size() -1); 
 		 //String totalItems = Integer.toString(tasks.size());

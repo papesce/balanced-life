@@ -2,19 +2,13 @@ package com.balance.life.util;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-
+import com.balance.life.model.Item;
 import com.balance.life.model.Tag;
-import com.balance.life.model.Task;
 
-public class TaskRow {
 
-	private long taskId;
+public class ItemRow {
+
+	private long itemId;
 	
 	private String name = "";
 	
@@ -22,15 +16,15 @@ public class TaskRow {
 	
 	private String tagString = "";
 
-	protected TaskRow() {
+	protected ItemRow() {
 	}
 	
-	public TaskRow(String name) {
+	public ItemRow(String name) {
 		this.name= name;
 	}
 	 
-    public long getTaskId() {
-        return taskId;
+    public long getItemId() {
+        return itemId;
     }
 
     public String getName() {
@@ -45,9 +39,9 @@ public class TaskRow {
     	return tagString;
     }
 
-	public Task getTask() {
-		Task task = new Task(this.name);
-		task.setId(this.taskId);
+	public Item getTask() {
+		Item task = new Item(this.name);
+		task.setId(this.itemId);
 		task.getTags().addAll(this.getTags());
 		return task;
 	}
