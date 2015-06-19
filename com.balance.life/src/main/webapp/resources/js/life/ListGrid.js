@@ -24,6 +24,7 @@ define([
     "dojo/store/JsonRest",
     "dojo/_base/array",
     "dojo/_base/lang",
+    "dojo/date/locale",
     "dijit/registry",
     "dojo/text!./templates/listGrid.html"
 ], function(declare, _WidgetBase, 
@@ -45,8 +46,7 @@ define([
 		ValidationTextBox,
 		Select, JsonRest,
 		array,
-		//locale,
-		lang, registry, template) {
+		lang, locale, registry, template) {
 
     
 	//var rpcJsonRest = lang.getObject("dojox.rpc.JsonRest", true);
@@ -162,8 +162,9 @@ define([
 							set: lang.hitch(this, this._editTags),
 							autoSave: true, editOn : "dblclick"
    	                			},
-   	                		{label : " Associations", field:"associations", autosave: true,
-   	                				editOn: "dblclick", autoselect : true}			
+   	                	{label : "Associations", field:"associations", autosave: true,
+   	                				editOn: "dblclick", autoselect : true},
+   	                	{label : "Created", field:"creationDate", "formatter": this._formatDate}			
    	                		
    	   					
    	   				];
@@ -194,6 +195,15 @@ define([
     	   var changedArray = array.map(tags, this._tagToString);
        	   return changedArray.join(", ");
     	   //return changedArray;
+       },
+       _formatDate: function(jsDate) {
+    	    var d = new Date(jsDate);
+    	    var today = new Date();
+    	    //d.setHours(0,0,0,0);
+    	    today.setHours(d.getHours(),d.getMinutes(),d.getSeconds(), d.getMilliseconds());
+    	    if (today.getTime() === d.getTime()) 
+    	    	return "today";
+    	    return locale.format(d, {formatLength: 'short'});
        },
        _editTags: function(task){
 //			TODO: warning to the user if new tags are going to be added.    	   

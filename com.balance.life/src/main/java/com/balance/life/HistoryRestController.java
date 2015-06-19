@@ -1,5 +1,6 @@
 package com.balance.life;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,22 +12,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.balance.life.model.DoneItem;
-import com.balance.life.repo.DoneItemRepository;
+import com.balance.life.model.Item;
+
+
 
 @RestController
 @RequestMapping("/rest/history")
 public class HistoryRestController {
 
-	 @Autowired
-	 DoneItemRepository doneTaskRepository;
+	 //Autowired
+	 //DoneItemRepository doneTaskRepository;
 	
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET)
-	 public List<DoneItem> getRestTaskHistory( 
+	 public List<Item> getRestTaskHistory( 
 			 @RequestHeader(value = "Range") String range,
 			 HttpServletResponse response)  {
-		 List<DoneItem> tasks = doneTaskRepository.findAll();   
+		 List<Item> tasks = new ArrayList<Item>();//doneTaskRepository.findAll();   
 		 String startItem = "0";
 		 String endItem = Integer.toString(tasks.size() -1); 
 		 String totalItems = Integer.toString(tasks.size());

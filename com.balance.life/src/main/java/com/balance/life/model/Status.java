@@ -1,41 +1,32 @@
 package com.balance.life.model;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class DoneTag{
-
+public class Status {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long tagId = 0;
+	private long statusId;
 	
-	private String name = "";
-
-
+	private String name = IDefaultStatus.CREATED; //completed, started, paused
 	
-	protected DoneTag() {
+	
+	protected Status() {
 	}
 	
+	public long getStatusId(){
+		return statusId;
+	}
 	
-	public DoneTag(String name){
+	public Status(String name) {
 		this.name = name;
-	}
-	
-	public long getTagId() {
-		return tagId;
 	}
 	
 	public String getName() {
 		return name;
 	}
-
-
-	
 }

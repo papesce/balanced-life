@@ -21,12 +21,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.balance.life.model.DoneItem;
-import com.balance.life.model.DoneTag;
+
+
+
+
+import com.balance.life.model.IDefaultStatus;
+import com.balance.life.model.Status;
 import com.balance.life.model.Tag;
 import com.balance.life.model.Item;
-import com.balance.life.repo.DoneTagRepository;
-import com.balance.life.repo.DoneItemRepository;
+import com.balance.life.repo.StatusRepository;
 import com.balance.life.repo.TagRepository;
 import com.balance.life.repo.ItemRepository;
 import com.balance.life.util.ItemRow;
@@ -41,9 +44,7 @@ public class ItemListRestController {
 	 @Autowired
 	 ItemRepository itemRepository;
 	 @Autowired
-	 DoneItemRepository doneItemRepository;
-	 @Autowired
-	 DoneTagRepository doneTagRepository;
+	 StatusRepository statusRepository;
 	 @Autowired
 	 TagRepository tagRepository;
 	 
@@ -85,6 +86,9 @@ public class ItemListRestController {
 	 @RequestMapping(method=RequestMethod.POST)
 	 @ResponseStatus(HttpStatus.CREATED)
 	 public Item create(@RequestBody @Valid Item task) {
+		 Status initialStatus = this.statusRepository.findByName(IDefaultStatus.CREATED);
+		 if (initialStatus != null)
+			 task.setCurrentStatus(initialStatus);
 		 return this.itemRepository.save(task);
 	 }
 	 
@@ -111,6 +115,7 @@ public class ItemListRestController {
 				 task.getTags().add(newTag);
 			 }
 		 }
+		 //this.statusRepository.save(task.getCurrentStatus());
 		 return itemRepository.save(task);
 	 }
 	  
@@ -122,18 +127,18 @@ public class ItemListRestController {
 
 	 @RequestMapping(value="/markDone/{id}", method=RequestMethod.PUT)
 	 public Item update(@PathVariable("id") long id, @RequestBody @Valid Item task) {
-		 DoneItem doneTask = new DoneItem(task.getName());
-		 for (Tag tag : task.getTags()) {
-			 String tagName = tag.getName();
-			DoneTag doneTag = doneTagRepository.findByName(tagName);
-			 if (doneTag == null) {
-				 doneTag = new DoneTag(tagName);
-				 doneTagRepository.save(doneTag);
-			 }
-			 doneTask.getTags().add(doneTag);
-		 }
-		 doneTask.setTimestamp(Calendar.getInstance().getTime());
-		 doneItemRepository.save(doneTask);
+		 //DoneItem doneTask = new DoneItem(task.getName());
+//		 for (Tag tag : task.getTags()) {
+//			 String tagName = tag.getName();
+//			DoneTag doneTag = doneTagRepository.findByName(tagName);
+//			 if (doneTag == null) {
+//				 doneTag = new DoneTag(tagName);
+//				 doneTagRepository.save(doneTag);
+//			 }
+//			 doneTask.getTags().add(doneTag);
+//		 }
+//		 doneTask.setTimestamp(Calendar.getInstance().getTime());
+//		 doneItemRepository.save(doneTask);
 		 //taskRepository.delete(task);
 		 return task;
 	 }	 

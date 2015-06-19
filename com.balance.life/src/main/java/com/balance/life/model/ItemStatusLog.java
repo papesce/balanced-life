@@ -1,5 +1,7 @@
 package com.balance.life.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,19 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Association {
+public class ItemStatusLog {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long assocId;
+	private long itemStatusId;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Item source;
+	private Item item;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Item target;
+	private Status status;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private AssociationMetadata assocMetadata;
+	private Date timestamp;
 
 }

@@ -11,6 +11,14 @@
 	width: 160px;
 }
 
+.listTable .field-creationDate {
+	width: 60px;
+}
+
+.listTable .field-temporal {
+	width: 160px;
+}
+
 .balancedTableToolbar {
 	height: 20px;
 	width: 100px;

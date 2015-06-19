@@ -1,36 +1,21 @@
 package com.balance.life;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.balance.life.model.DoneItem;
-import com.balance.life.model.DoneTag;
-import com.balance.life.model.Tag;
 import com.balance.life.model.Item;
-import com.balance.life.repo.DoneTagRepository;
-import com.balance.life.repo.DoneItemRepository;
-import com.balance.life.repo.TagRepository;
 import com.balance.life.repo.ItemRepository;
-import com.balance.life.util.ItemRow;
-import com.balance.life.util.ItemTreeRow;
+import com.balance.life.repo.TagRepository;
 
 
 
@@ -41,10 +26,7 @@ public class ItemTreeRestController {
 
 	 @Autowired
 	 ItemRepository itemRepository;
-	 @Autowired
-	 DoneItemRepository doneItemRepository;
-	 @Autowired
-	 DoneTagRepository doneTagRepository;
+	
 	 @Autowired
 	 TagRepository tagRepository;
 	 
