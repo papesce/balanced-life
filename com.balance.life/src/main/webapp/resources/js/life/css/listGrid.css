@@ -19,6 +19,10 @@
 	width: 160px;
 }
 
+.listTable .field-itemId {
+	width: 40px;
+}
+
 .balancedTableToolbar {
 	height: 20px;
 	width: 100px;

@@ -36,7 +36,7 @@ public class Item {
 	private List<Tag> tags = new ArrayList<Tag>();
 	
 	@ManyToMany
-	private List<Association> association = new ArrayList<Association>();
+	private List<Association> associations = new ArrayList<Association>();
 	
 	
 
@@ -60,6 +60,11 @@ public class Item {
 		return tags;
 	}
 
+    public List<Association> getAssociations() {
+		return associations;
+	}
+
+    
 	public void setId(long itemId) {
 		this.itemId = itemId;
 	}

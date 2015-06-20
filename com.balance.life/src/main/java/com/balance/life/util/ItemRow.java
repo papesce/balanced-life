@@ -2,6 +2,7 @@ package com.balance.life.util;
 
 import java.util.List;
 
+import com.balance.life.model.Association;
 import com.balance.life.model.Item;
 import com.balance.life.model.Status;
 import com.balance.life.model.Tag;
@@ -15,11 +16,15 @@ public class ItemRow {
 	
 	private List<Tag> tags;
 	
+	private List<Association> associations;
+	
 	private Status currentStatus;
 	
 	private String tagString = "";
 	
+	private String associationString = "";
 	
+
 
 	protected ItemRow() {
 	}
@@ -39,6 +44,16 @@ public class ItemRow {
     public List<Tag> getTags() {
 		return tags;
 	}
+    
+	public List<Association> getAssociations() {
+		return associations;
+	}
+
+    
+	public String getAssociationString() {
+		return associationString;
+	}
+
 	
     public String getTagString() {
     	return tagString;
@@ -48,12 +63,13 @@ public class ItemRow {
     	return currentStatus;
     }
 
-	public Item getTask() {
-		Item task = new Item(this.name);
-		task.setId(this.itemId);
-		task.setCurrentStatus(this.getCurrentStatus());
-		task.getTags().addAll(this.getTags());
-		return task;
+	public Item getItem() {
+		Item item = new Item(this.name);
+		item.setId(this.itemId);
+		item.setCurrentStatus(this.getCurrentStatus());
+		item.getTags().addAll(this.getTags());
+		item.getAssociations().addAll(this.getAssociations());
+		return item;
 	}
     
    

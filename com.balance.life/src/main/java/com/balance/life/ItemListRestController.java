@@ -1,8 +1,11 @@
 package com.balance.life;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -25,10 +28,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
+
+
+
+
+
+
+
+import com.balance.life.model.Association;
+import com.balance.life.model.AssociationMetadata;
 import com.balance.life.model.IDefaultStatus;
 import com.balance.life.model.Status;
 import com.balance.life.model.Tag;
 import com.balance.life.model.Item;
+import com.balance.life.repo.AssociationMetadataRepository;
+import com.balance.life.repo.AssociationRepository;
 import com.balance.life.repo.StatusRepository;
 import com.balance.life.repo.TagRepository;
 import com.balance.life.repo.ItemRepository;
@@ -45,6 +59,10 @@ public class ItemListRestController {
 	 ItemRepository itemRepository;
 	 @Autowired
 	 StatusRepository statusRepository;
+	 @Autowired
+	 AssociationRepository assocRepository;
+	 @Autowired
+	 AssociationMetadataRepository assocMetadataRepository;
 	 @Autowired
 	 TagRepository tagRepository;
 	 
@@ -99,12 +117,51 @@ public class ItemListRestController {
 	 }
 	  
 	 @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	 public Item update(@PathVariable("id") long id, @RequestBody @Valid ItemRow taskRow) { 
-		 Item task = taskRow.getTask();
-		 String tagString = taskRow.getTagString();
+	 public Item update(@PathVariable("id") long id, @RequestBody  ItemRow itemRow) { 
+		 Item item = itemRow.getItem();
+		 processTagString(item, itemRow);
+		 processAssociationString(item, itemRow);
+		 //this.statusRepository.save(task.getCurrentStatus());
+		 return itemRepository.save(item);
+	 }
+	  
+	 private void processAssociationString(Item item, ItemRow itemRow) {
+		 String assocString = itemRow.getAssociationString();
+		 if (!"".equals(assocString)) {
+			 String[] newAssocs = assocString.split("(?!^\\()(?=\\()");
+			 item.getAssociations().clear();
+			 for (int i = 0; i < newAssocs.length; i++) {
+				 String newAssoc = newAssocs[i].trim();
+				 String[] pair = newAssoc.replaceAll("[()]", "").split(",");
+				 String assocName =  pair[0].trim(); 
+				 long targetId = Long.parseLong(pair[1].trim());
+				 
+				 Item targetItem = itemRepository.findOne(targetId);
+				 if (targetItem != null) {
+					 Association assoc = assocRepository.findByMetadataName(assocName);
+					 if (assoc == null) {
+						 AssociationMetadata assocMetadata = assocMetadataRepository.findByName(assocName);
+						 if (assocMetadata == null) {
+							 assocMetadata = new AssociationMetadata();
+							 assocMetadata.setName(assocName);
+						 }
+						 assoc = new Association();
+						 assoc.setTarget(targetItem);
+						 assoc.setAssociationMetadata(assocMetadata);
+						 assoc.getAssociationMetadata().setName(assocName);
+					 }
+					 item.getAssociations().add(assoc);
+				 }
+			 }
+		 }
+	}
+
+
+	private void processTagString(Item item, ItemRow itemRow) {
+		 String tagString = itemRow.getTagString();
 		 if (!"".equals(tagString)) {
 			 String[] newTags = tagString.split(",");
-			 task.getTags().clear();
+			 item.getTags().clear();
 			 for (int i = 0; i < newTags.length; i++) {
 				 String tagSt = newTags[i].trim();
 				 Tag newTag = tagRepository.findByName(tagSt);
@@ -112,14 +169,14 @@ public class ItemListRestController {
 					 newTag = new Tag(tagSt);
 					 tagRepository.save(newTag);
 				 }
-				 task.getTags().add(newTag);
+				 item.getTags().add(newTag);
 			 }
 		 }
-		 //this.statusRepository.save(task.getCurrentStatus());
-		 return itemRepository.save(task);
-	 }
-	  
-	 @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+		
+	}
+
+
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	 public ResponseEntity<Boolean> delete(@PathVariable("id") long id) {
 		 this.itemRepository.delete(id);
 		 return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);

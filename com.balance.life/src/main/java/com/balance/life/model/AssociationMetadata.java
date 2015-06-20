@@ -14,4 +14,19 @@ public class AssociationMetadata {
 	
 	private String name;
 
+	public long getAssocMetadataId() {
+		return assocMetadataId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	
+
 }

@@ -131,7 +131,7 @@ define([
         	for (var int = 0; int < selection.length; int++) {
        	     	var item = selection[int];  	
        	     	this._doneStore.put(item);
-       	     	this._store.remove(item.itemId);
+       	     	//this._store.remove(item.itemId);
         	};
         },
         _initGrid : function(arguments) {
@@ -153,17 +153,16 @@ define([
         	this._store = cachedStore;
    	   
         	var myColumns = [
+        	          { label: "ID", field: "itemId"},
    	                  { label: "Name", field: "name", editor: "text" , autoSave: true,
    	                	editOn : "dblclick", autoSelect : true },
-   	                  { label: "Tags", field: "tagString", 
-   	                		editor: "text",
-							//formatter: lang.hitch(this, this._formatTags),
+   	                  { label: "Tags", field: "tagString", editor: "text",
 							get: lang.hitch(this, this._formatTags),
-							set: lang.hitch(this, this._editTags),
-							autoSave: true, editOn : "dblclick"
-   	                			},
-   	                	{label : "Associations", field:"associations", autosave: true,
-   	                				editOn: "dblclick", autoselect : true},
+							//set: lang.hitch(this, this._editTags),
+							autoSave: true, editOn : "dblclick"	},
+					  {label : "Associations", field:"associationString", editor: "text", 
+   	 						get: lang.hitch(this, this._formatAssociations),
+   	                		autoSave: true, editOn: "dblclick"},
    	                	{label : "Created", field:"creationDate", "formatter": this._formatDate}			
    	                		
    	   					
@@ -190,11 +189,16 @@ define([
        	   }));
        	   
        },
-       _formatTags: function(task){
-    	   var tags = task.tags;
+       _formatTags: function(item){
+    	   var tags = item.tags;
     	   var changedArray = array.map(tags, this._tagToString);
        	   return changedArray.join(", ");
     	   //return changedArray;
+       },
+       _formatAssociations: function(item){
+    	   var associations = item.associations;
+    	   var changedArray = array.map(associations, this._associationToString);
+       	   return changedArray.join(", ");
        },
        _formatDate: function(jsDate) {
     	    var d = new Date(jsDate);
@@ -219,6 +223,7 @@ define([
 //    	   }
 //    	   delete task.tagString;
        },
+      
 //       _searchTag: function(tags, tagName) {
 //    	   this._tagStore.query("?tagName=" + tagName.trim()).then(function(tasks){
 //    		   
@@ -254,6 +259,13 @@ define([
        },
        _tagToString: function(tag){
     	   return tag.name;
+       },
+       _associationToString: function(association){
+    	   var assocMetadata = association.associationMetadata;
+    	   var assocName = assocMetadata.name;
+    	   var target = association.target;
+    	   var targetId = target.itemId;
+    	   return "("+ assocName +"," + targetId +")";
        },
         refreshGrid : function() {
         	this._grid.refresh();

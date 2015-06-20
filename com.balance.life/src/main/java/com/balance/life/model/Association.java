@@ -14,13 +14,39 @@ public class Association {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long assocId;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	private Item source;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	private Item target;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	private AssociationMetadata assocMetadata;
+	
+	public long getASsocId() {
+		return assocId;
+	}
+	
+	//public Item getSource() {
+	//	return source;
+	//}
+	
+	public Item getTarget() {
+		return target;
+	}
+	
+	public AssociationMetadata getAssociationMetadata() {
+		return assocMetadata;
+	}
+
+	public void setTarget(Item targetItem) {
+		this.target = targetItem;
+		
+	}
+
+	public void setAssociationMetadata(AssociationMetadata assocMetadata) {
+		this.assocMetadata = assocMetadata;
+		
+	}
 
 }
