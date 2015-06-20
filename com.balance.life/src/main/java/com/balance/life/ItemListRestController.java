@@ -103,11 +103,11 @@ public class ItemListRestController {
 	 
 	 @RequestMapping(method=RequestMethod.POST)
 	 @ResponseStatus(HttpStatus.CREATED)
-	 public Item create(@RequestBody @Valid Item task) {
+	 public Item create(@RequestBody @Valid Item item) {
 		 Status initialStatus = this.statusRepository.findByName(IDefaultStatus.CREATED);
-		 if (initialStatus != null)
-			 task.setCurrentStatus(initialStatus);
-		 return this.itemRepository.save(task);
+		 if (initialStatus != null) 
+			 item.setCurrentStatus(initialStatus);
+		 return this.itemRepository.save(item);
 	 }
 	 
 	 
@@ -138,17 +138,19 @@ public class ItemListRestController {
 				 
 				 Item targetItem = itemRepository.findOne(targetId);
 				 if (targetItem != null) {
-					 Association assoc = assocRepository.findByMetadataName(assocName);
+					 Association assoc = assocRepository.findBySourceAndName(item.getItemId(), assocName);
 					 if (assoc == null) {
 						 AssociationMetadata assocMetadata = assocMetadataRepository.findByName(assocName);
 						 if (assocMetadata == null) {
 							 assocMetadata = new AssociationMetadata();
 							 assocMetadata.setName(assocName);
+							 assocMetadataRepository.save(assocMetadata);
 						 }
 						 assoc = new Association();
 						 assoc.setTarget(targetItem);
+						 assoc.setSource(item);
 						 assoc.setAssociationMetadata(assocMetadata);
-						 assoc.getAssociationMetadata().setName(assocName);
+						 assocRepository.save(assoc);
 					 }
 					 item.getAssociations().add(assoc);
 				 }

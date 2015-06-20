@@ -1,7 +1,6 @@
 package com.balance.life.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,6 +45,11 @@ public class Association {
 
 	public void setAssociationMetadata(AssociationMetadata assocMetadata) {
 		this.assocMetadata = assocMetadata;
+		
+	}
+
+	public void setSource(Item item) {
+		this.source = item;
 		
 	}
 
