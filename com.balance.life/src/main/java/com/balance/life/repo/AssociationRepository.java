@@ -1,5 +1,7 @@
 package com.balance.life.repo;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,5 +20,10 @@ public interface AssociationRepository extends JpaRepository<Association, Long>{
 	
 	@Query(FIND_BY_SOURCE_AND_NAME_QUERY)
 	Association findBySourceAndName(@Param("sourceId") long sourceId, @Param("name") String name);
+	
+	
+	
+	List<Association> findAllByTargetItemId(long targetId);
+	
 	
 }

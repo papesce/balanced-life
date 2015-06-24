@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Item {
 
@@ -36,6 +38,7 @@ public class Item {
 	private List<Tag> tags = new ArrayList<Tag>();
 	
 	@ManyToMany
+	@JsonManagedReference
 	private List<Association> associations = new ArrayList<Association>();
 	
 	

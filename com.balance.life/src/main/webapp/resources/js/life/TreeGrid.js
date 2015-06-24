@@ -18,6 +18,7 @@ define([
     'dstore/Trackable',
     "dstore/Cache",
     "dstore/Memory",
+    "dojo/_base/array",
     "dojo/_base/lang",
     "dojo/text!./templates/treeGrid.html"
 ], function(declare, _WidgetBase, 
@@ -36,7 +37,8 @@ define([
 		DTree,
 		Trackable,
 		Cache,
-		Memory,
+		Memory, 
+		array,
 		lang,
 		template) {
 
@@ -87,19 +89,16 @@ define([
          	this._store = cachedStore;
         	
          	var myColumns = [
+         	                  { label: "ID", field: "itemId"},
           	                  {renderExpando: true, label: "Name", field: "name"
           	                	  , editor: "text" , autoSave: true,
           	                	editOn : "dblclick", autoSelect : true 
           	                	},
-          	                  //{ label: "Tags", field: "tagString", 
-          	                //		editor: "text",
-       							//formatter: lang.hitch(this, this._formatTags),
-       						//	get: lang.hitch(this, this._formatTags),
-       						//	set: lang.hitch(this, this._editTags),
-       						//	autoSave: true, editOn : "dblclick"
-          	                //			},
-          	   					
-          	   				];
+             	               { label: "Tags", field: "tagString", 
+        						get: lang.hitch(this, this._formatTags) 
+             	               }
+
+          	                ];
         	
         	 this._grid = new (declare([OnDemandGrid, Keyboard, Selection,  DijitRegistry, ColumnResizer,
         	                            Editor, Tree]))({
@@ -121,7 +120,14 @@ define([
         		//.then(function(task){
         		//	this._store.notify(task, task.id)})
         },
-
+        _formatTags: function(item){
+     	   var tags = item.tags;
+     	   var changedArray = array.map(tags, this._tagToString);
+        	   return changedArray.join(", ");
+        },
+        _tagToString: function(tag){
+     	   return tag.name;
+        },
         resize: function(){
        	 this.inherited(arguments);
        	 this._grid.resize();

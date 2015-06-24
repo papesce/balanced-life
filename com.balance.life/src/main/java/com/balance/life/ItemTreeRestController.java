@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.balance.life.model.Association;
 import com.balance.life.model.Item;
+import com.balance.life.repo.AssociationRepository;
 import com.balance.life.repo.ItemRepository;
 import com.balance.life.repo.TagRepository;
 
@@ -26,7 +28,8 @@ public class ItemTreeRestController {
 
 	 @Autowired
 	 ItemRepository itemRepository;
-	
+	 @Autowired
+	 AssociationRepository assocRepository;
 	 @Autowired
 	 TagRepository tagRepository;
 	 
@@ -43,10 +46,10 @@ public class ItemTreeRestController {
 		 //int to = Integer.valueOf(ranges[1]);
 		 List<Item> items;
 		 if (parentId == null) {
-			 items = itemRepository.findAll();  
+			 items = getParentItems();  
 		 } else {
-			 //tasks = itemRepository.findAllByTagsTagId(tagId);
-			 items = new ArrayList<Item>();
+			 items = getItemsFromParent(parentId);
+			 //items = new ArrayList<Item>();
 		 }
 		 String startItem = "0";
 		 String endItem = Integer.toString(items.size() -1); 
@@ -62,6 +65,25 @@ public class ItemTreeRestController {
 		//}
 		return items;
 	 }
+
+
+
+	private List<Item> getParentItems() {
+		return itemRepository.findAllWithNoParent();
+
+	}
+
+
+
+	private List<Item> getItemsFromParent(Long parentId) {
+		 List<Association> associations = assocRepository.findAllByTargetItemId(parentId);
+		 List<Item> items = new ArrayList<Item>();
+		 for (Association assoc : associations) {
+			 Item source = assoc.getSource();
+			 items.add(source);
+		  }		 
+		 return items;
+	}
 	
 	 
 	 

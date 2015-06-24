@@ -105,8 +105,12 @@ public class ItemListRestController {
 	 @ResponseStatus(HttpStatus.CREATED)
 	 public Item create(@RequestBody @Valid Item item) {
 		 Status initialStatus = this.statusRepository.findByName(IDefaultStatus.CREATED);
-		 if (initialStatus != null) 
+		 if (initialStatus == null) {
+			 initialStatus = new Status(IDefaultStatus.CREATED);
+			 statusRepository.save(initialStatus);
+		 } else {
 			 item.setCurrentStatus(initialStatus);
+		 }
 		 return this.itemRepository.save(item);
 	 }
 	 
