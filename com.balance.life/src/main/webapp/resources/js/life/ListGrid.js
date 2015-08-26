@@ -107,7 +107,14 @@ define([
       	        label: "Mark as Done",
       	        onClick: lang.hitch(this, this._markAsDoneTaskClick)
       	    }, this.markAsDoneButtonDiv);
+        	 this._refreshButton = new Button({
+       	        label: "Refresh",
+       	        onClick: lang.hitch(this, this._refreshClick)
+       	    }, this.refreshButtonDiv);
 
+        },
+        _refreshClick: function() {
+        	this._grid.refresh();
         },
         _filterSelectChanged : function(value) {
         	this._grid.set('collection', this._store.filter({ tagId: value}));

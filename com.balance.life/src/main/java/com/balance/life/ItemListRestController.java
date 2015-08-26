@@ -35,6 +35,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
+
+
 import com.balance.life.model.Association;
 import com.balance.life.model.AssociationMetadata;
 import com.balance.life.model.IDefaultStatus;
@@ -43,10 +45,12 @@ import com.balance.life.model.Tag;
 import com.balance.life.model.Item;
 import com.balance.life.repo.AssociationMetadataRepository;
 import com.balance.life.repo.AssociationRepository;
+import com.balance.life.repo.ItemStatusLogRepository;
 import com.balance.life.repo.StatusRepository;
 import com.balance.life.repo.TagRepository;
 import com.balance.life.repo.ItemRepository;
 import com.balance.life.util.ItemRow;
+import com.balance.life.util.StatusLogger;
 
 
 
@@ -65,7 +69,8 @@ public class ItemListRestController {
 	 AssociationMetadataRepository assocMetadataRepository;
 	 @Autowired
 	 TagRepository tagRepository;
-	 
+	 @Autowired
+	 ItemStatusLogRepository itemStatusLogRepository;
 	 
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET, value = "/mobile")
@@ -77,26 +82,26 @@ public class ItemListRestController {
 	 
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET)
-	 public List<Item> getRestTasks( 
+	 public List<Item> getRestItems( 
 			 @RequestHeader(value = "Range") String range,
 			 @RequestParam(value = "tagId", required = false) Long tagId,
 	            HttpServletResponse response) {
 		 String[] ranges = range.substring("items=".length()).split("-");
 		 int from = Integer.valueOf(ranges[0]);
 		 int to = Integer.valueOf(ranges[1]);
-		 List<Item> tasks;
+		 List<Item> items;
 		 if (tagId == null || tagId.equals((long)0)) {
-			 tasks = itemRepository.findAll();   
+			 items = itemRepository.findAllItems();   
 		 } else {
-			 tasks = itemRepository.findAllByTagsTagId(tagId);
+			 items = itemRepository.findAllItemsByTagsTagId(tagId);
 		 }
 		 String startItem = "0";
-		 String endItem = Integer.toString(tasks.size() -1); 
-		 String totalItems = Integer.toString(tasks.size());
+		 String endItem = Integer.toString(items.size() -1); 
+		 String totalItems = Integer.toString(items.size());
 		 String responseSt = "items=" + startItem + "-" + endItem + "/"
 					+ totalItems;
 		response.setHeader("Content-Range", responseSt);
-		 return tasks;
+		 return items;
 	 }
 	
 	 
@@ -189,21 +194,9 @@ public class ItemListRestController {
 	 }
 
 	 @RequestMapping(value="/markDone/{id}", method=RequestMethod.PUT)
-	 public Item update(@PathVariable("id") long id, @RequestBody @Valid Item task) {
-		 //DoneItem doneTask = new DoneItem(task.getName());
-//		 for (Tag tag : task.getTags()) {
-//			 String tagName = tag.getName();
-//			DoneTag doneTag = doneTagRepository.findByName(tagName);
-//			 if (doneTag == null) {
-//				 doneTag = new DoneTag(tagName);
-//				 doneTagRepository.save(doneTag);
-//			 }
-//			 doneTask.getTags().add(doneTag);
-//		 }
-//		 doneTask.setTimestamp(Calendar.getInstance().getTime());
-//		 doneItemRepository.save(doneTask);
-		 //taskRepository.delete(task);
-		 return task;
+	 public Item markAsDone(@PathVariable("id") long id, @RequestBody @Valid Item item) {
+		 StatusLogger.changeStatus(item, statusRepository,  IDefaultStatus.DONE, itemStatusLogRepository);
+		 return this.itemRepository.save(item);
 	 }	 
 
 

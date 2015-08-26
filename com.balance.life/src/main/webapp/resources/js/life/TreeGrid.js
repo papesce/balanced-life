@@ -62,11 +62,15 @@ define([
 			this._initGrid(arguments);
         },
         _initButtons : function(arguments) {
-//       	 this._addRowButton = new Button({
-//       	        label: "Insert New Goal",
-//       	        onClick: lang.hitch(this, this._insertNewGoalClick)
-//       	    }, this.addGoalRowButtonDiv);
-        },
+        	this._refreshButton = new Button({
+        	label: "Refresh",
+   	        onClick: lang.hitch(this, this._refreshClick)
+   	    }, this.refreshButtonDiv);
+
+    	},
+    	_refreshClick: function() {
+    			this._grid.refresh();
+    	},
         startup: function() {
         	  this.inherited(arguments);
         	  this._grid.startup();

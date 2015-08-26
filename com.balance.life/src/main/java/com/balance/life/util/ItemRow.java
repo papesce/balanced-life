@@ -1,5 +1,6 @@
 package com.balance.life.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.balance.life.model.Association;
@@ -14,9 +15,9 @@ public class ItemRow {
 	
 	private String name = "";
 	
-	private List<Tag> tags;
+	private List<Tag> tags = new ArrayList<Tag>();
 	
-	private List<Association> associations;
+	private List<Association> associations = new ArrayList<Association>();
 	
 	private Status currentStatus;
 	
@@ -72,6 +73,12 @@ public class ItemRow {
 		return item;
 	}
     
-   
+	protected void setItem(Item item) {
+		this.name = item.getName();
+		this.itemId = item.getItemId();
+		this.currentStatus = item.getCurrentStatus();
+		this.getTags().addAll(item.getTags());
+		this.getAssociations().addAll(item.getAssociations());
+	}
     
 }

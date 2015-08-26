@@ -23,7 +23,7 @@ define([ "life/CenterPane",
 		this._topContentPane= new ContentPane({
 			region: "top",
 			"class" : "balancedTopPanel",
-			content: "Balanced Life v0.5"
+			content: "Balanced Life v0.6 (8/26/2015)"
 			});
 		this._mainContainer.addChild(this._topContentPane);
 	},

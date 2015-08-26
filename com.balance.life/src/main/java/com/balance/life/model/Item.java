@@ -33,6 +33,9 @@ public class Item {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Status currentStatus;
 	
+	@ManyToMany
+	private List<ItemStatusLog> statusHistory = new ArrayList<ItemStatusLog>();
+	
 	
 	@ManyToMany
 	private List<Tag> tags = new ArrayList<Tag>();
@@ -85,7 +88,9 @@ public class Item {
 		
 	}
 
-	
+	public List<ItemStatusLog> getStatusHistory() {
+		return statusHistory;
+	}
     
     
    

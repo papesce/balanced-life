@@ -16,6 +16,35 @@ public class ItemStatusLog {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long itemStatusId;
 	
+	public long getItemStatusId() {
+		return itemStatusId;
+	}
+
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Item item;
 	

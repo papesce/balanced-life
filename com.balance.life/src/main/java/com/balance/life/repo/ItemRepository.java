@@ -9,14 +9,22 @@ import com.balance.life.model.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Long>{
 
-	String FIND_ALL_WITH_NO_PARENT_QUERY = "SELECT i FROM Item i "
-			+ "WHERE  i.associations IS EMPTY";
-
 
 	List<Item> findAllByTagsTagId(long tagId);
 
 
-	@Query(FIND_ALL_WITH_NO_PARENT_QUERY)
+	@Query("SELECT i FROM Item i JOIN i.currentStatus s WHERE  s.name != 'DONE'"
+			+ "AND  i.associations IS EMPTY")
 	List<Item> findAllWithNoParent();
+
+
+	@Query("SELECT i FROM Item i JOIN i.currentStatus s WHERE  s.name != 'DONE'")
+	List<Item> findAllItems();
+
+
+	List<Item> findAllItemsByTagsTagId(Long tagId);
+
+	@Query("SELECT i FROM Item i JOIN i.currentStatus s WHERE  s.name = 'DONE'")
+	List<Item> getHistory();
 
 }

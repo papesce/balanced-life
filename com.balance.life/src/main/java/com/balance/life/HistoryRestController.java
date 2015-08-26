@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.balance.life.model.IDefaultStatus;
 import com.balance.life.model.Item;
+import com.balance.life.model.ItemStatusLog;
+import com.balance.life.repo.ItemRepository;
+import com.balance.life.repo.ItemStatusLogRepository;
+import com.balance.life.util.ItemHistory;
 
 
 
@@ -20,23 +25,32 @@ import com.balance.life.model.Item;
 @RequestMapping("/rest/history")
 public class HistoryRestController {
 
-	 //Autowired
-	 //DoneItemRepository doneTaskRepository;
-	
+	 @Autowired
+	 ItemRepository itemRepository;
+	 @Autowired
+	 ItemStatusLogRepository itemStatusLogRepo;
+	 
 	 @ResponseBody
 	 @RequestMapping(method=RequestMethod.GET)
-	 public List<Item> getRestTaskHistory( 
+	 public List<ItemHistory> getRestTaskHistory( 
 			 @RequestHeader(value = "Range") String range,
 			 HttpServletResponse response)  {
-		 List<Item> tasks = new ArrayList<Item>();//doneTaskRepository.findAll();   
+		 List<Item> items = itemRepository.getHistory();
+		 List<ItemHistory> itemhs = new ArrayList<ItemHistory>();
+		 for (Item item : items) {
+			 ItemStatusLog doneStatus = itemStatusLogRepo.findByItemAndStatus_name(item, IDefaultStatus.DONE); 
+			 ItemHistory itemh = new ItemHistory(item, doneStatus.getTimestamp());
+			 itemhs.add(itemh);
+		}
+		 
 		 String startItem = "0";
-		 String endItem = Integer.toString(tasks.size() -1); 
-		 String totalItems = Integer.toString(tasks.size());
+		 String endItem = Integer.toString(items.size() -1); 
+		 String totalItems = Integer.toString(items.size());
 		 String responseSt = "items=" + startItem + "-" + endItem + "/"
 					+ totalItems;
 		response.setHeader("Content-Range", responseSt);
 
-		 return tasks;
+		 return itemhs;
 	 }
 	
 }

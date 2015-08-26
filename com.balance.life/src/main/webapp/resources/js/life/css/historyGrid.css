@@ -7,3 +7,18 @@
 	height: 100%;
 	width: 100%;
 }
+
+
+.balancedHistoryTable .field-itemId {
+	width: 40px;
+}
+
+.historyGridTable {
+	width: 100%;
+	height: 100%;
+}
+
+.balancedHistoryToolbar {
+	height: 20px;
+	
+}
