@@ -1,11 +1,10 @@
-<!doctype html>
    <html ng-app>
      <head>
        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script> -->
        <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
          
 	 <!-- bower:css -->
-	 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	 <link rel="stylesheet" href="resources/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	 <!-- endbower -->
      </head>
      <body>
@@ -31,9 +30,9 @@
        <h1>Hello {{yourName}}!</h1>
      </div>
      <!-- bower:js -->
-     <script src="bower_components/jquery/dist/jquery.js"></script>
-     <script src="bower_components/angular/angular.js"></script>
-     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+     <script src="${pageContext.request.contextPath}/resources/bower_components/jquery/dist/jquery.js"></script>
+     <script src="resources/bower_components/angular/angular.js"></script>
+     <script src="resources/bower_components/bootstrap/dist/js/bootstrap.js"></script>
      <!-- endbower -->
      
    </body>
