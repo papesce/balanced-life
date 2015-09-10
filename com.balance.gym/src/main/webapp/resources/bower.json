@@ -12,17 +12,18 @@
     "test",
     "tests"
   ],
-  "overrides":{
-    "bootstrap" : {
-         "main": [
-            "less/bootstrap.less",
-            "dist/css/bootstrap.css",
-            "dist/js/bootstrap.js"
-          ]
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
     }
   },
   "dependencies": {
     "angular": "~1.4.5",
+    "angular-animate": "~1.4.5",
     "angular-ui-grid": "~3.0.6",
     "bootstrap": "~3.3.5"
   }
