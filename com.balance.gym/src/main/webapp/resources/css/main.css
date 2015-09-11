@@ -1,4 +1,8 @@
-    .grid {
-      width: 500px;
-      height: 300px;
-    }
+.grid {
+  width: 500px;
+  height: 300px;
+}
+    
+.header-filtered {
+  color: blue;
+}

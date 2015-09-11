@@ -11,7 +11,7 @@
      </head>
 <body>
  <!-- boostrap navbar -->
-    <nav class="navbar navbar-default">
+ <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Balanced Gym</a>
@@ -23,15 +23,16 @@
     </div>
   </div>
 </nav>
-<!--  	<div>
-     <label>Name:</label>
-        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+<!--  	<div>  -->
+     <label>Exercises:</label>
+<!--         <input type="text" ng-model="yourName" placeholder="Enter a name here">
         <hr>
        <h1>Hello {{yourName}}!</h1>
     </div>
  -->
+  	<button id='toggleFiltering' ng-click="toggleFiltering()" class="btn btn-success">Toggle Filtering</button>
      <div ng-controller="MainCtrl">
-     	<div id="grid1" ui-grid="{ data: myData }" class="grid"></div>
+     	<div id="grid1" ui-grid="gridOptions" class="grid"></div>
      </div>
      
      <!-- bower:js -->
