@@ -1,5 +1,6 @@
 define([
         "dojo/_base/declare",
+        "dojo/router",
         "dijit/_WidgetBase",
         "dijit/_AttachMixin",
         "dijit/_TemplatedMixin",
@@ -10,7 +11,7 @@ define([
         "life/HistoryGrid",
         "life/TreeGrid",
         "dojo/text!./templates/centerPane.html"
-], function(declare, _WidgetBase,
+], function(declare, router, _WidgetBase,
 		_AttachMixin,
 		_TemplatedMixin,
 		_WidgetsInTemplateMixin,
@@ -59,8 +60,11 @@ define([
 			    historyPane.set("content", historyGrid);
 			    this._tabContainer.addChild(historyPane);
 			    
+			    this._tabContainer.watch("selectedChildWidget", this._tabChanged); 
 
-
+      },
+      _tabChanged : function() {
+    	  router.go("tab");
       },
       startup: function() {
     	  this.inherited(arguments);

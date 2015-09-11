@@ -1,5 +1,6 @@
 package com.balance.life;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -13,6 +14,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -85,7 +88,13 @@ public class ItemListRestController {
 	 public List<Item> getRestItems( 
 			 @RequestHeader(value = "Range") String range,
 			 @RequestParam(value = "tagId", required = false) Long tagId,
-	            HttpServletResponse response) {
+	            HttpServletResponse response,
+	            Principal user) {
+		 
+		 //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	     //String name = auth.getName(); //get logged in username
+		 System.out.println(user.getName());
+		 
 		 String[] ranges = range.substring("items=".length()).split("-");
 		 int from = Integer.valueOf(ranges[0]);
 		 int to = Integer.valueOf(ranges[1]);
